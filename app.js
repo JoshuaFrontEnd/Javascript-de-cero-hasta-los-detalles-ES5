@@ -114,7 +114,34 @@ var persona = {
 // Una forma en que nos beneficia la notacion de corchetes es que podemos asignar las propiedades de un objeto a una variable y trabajar con esa variable, de esa manera si cambiar el nombre de la propiedad, solo la cambiamos en la variable y no en todo el codigo
 
 // Asigno el valor de la propiedad "edad" del objeto "persona" a una variable llamada "campo"
-var campo = "edad"
+// var campo = "edad"
 
 // Puedo acceder al valor de la propiedad "edad" llamando con la notacion de corchetes su asignacion en la variable campo, si por alguna razon la propiedad "campo" debe cambiar su nombre solo se cambiaria en la asignacion de variable y en el objeto, y no en todo el codigo
-console.log( persona[campo] );
+// console.log( persona[campo] )
+
+
+/*-- -------------------------------------------- --*/
+/*--                   Funciones                  --*/
+/*-- -------------------------------------------- --*/
+
+// Estructura de una funcion en Javascript
+// function nombreDeLaFuncion( parametros ){
+//   // Ambito de funcion
+// }
+
+// function primeraFuncion() {
+//   var a = 20
+//   console.log( a );
+// }
+
+// Para ejecutar una funcion debe llamarse de esta manera:
+// primeraFuncion()
+
+// En Javascript todo retorna un valor, en este caso la funcion "vacia" retornara "undefined"
+// function primeraFuncion() {
+// }
+
+// primeraFuncion()
+
+// Si la funcion es llamada sin los parentesis retornara la definicion de la funcion, osea el codigo literal:
+primeraFuncion
