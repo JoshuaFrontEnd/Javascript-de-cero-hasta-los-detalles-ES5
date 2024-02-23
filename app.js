@@ -2,51 +2,49 @@
   Sección 2: Variables, Objetos, Typeof y Condicionales
 ------------------------------------------------------------------------- */
 
+/*-- -------------------------------------------- --*/
 /*-- Pasando variables por valor y por referencia --*/
-
-/*-- Bibliografia de apoyo
-  -
---*/
+/*-- -------------------------------------------- --*/
 
 // Cuando se trata de variables con tipos primitivos siempre se pasan por valor
 
-var a = 10
-var b = a
+// var a = 10
+// var b = a
 
-console.log("a: ", a)
-console.log("b: ", b)
+// console.log("a: ", a)
+// console.log("b: ", b)
 
-a = 20
+// a = 20
 
-console.log("a: ", a)
-console.log("b: ", b)
+// console.log("a: ", a)
+// console.log("b: ", b)
 
 // Cuando se trata de objetos siempre el valor se pasa por referencia
 
-var c = {
-  nombre: 'Juanin'
-}
+// var c = {
+//   nombre: 'Juanin'
+// }
 
-var d = c
+// var d = c
 
-console.log("c: ", c)
-console.log("d: ", c)
+// console.log("c: ", c)
+// console.log("d: ", c)
 
-c.nombre = 'Tulio'
+// c.nombre = 'Tulio'
 
-console.log("c: ", c)
-console.log("d: ", c)
+// console.log("c: ", c)
+// console.log("d: ", c)
 
-const aa = [1, 2, 3]
-const bb = aa
+// const aa = [1, 2, 3]
+// const bb = aa
 
-console.log(aa)
-console.log(bb)
+// console.log(aa)
+// console.log(bb)
 
-aa.push(4)
+// aa.push(4)
 
-console.log(aa)
-console.log(bb)
+// console.log(aa)
+// console.log(bb)
 
 /*
 
@@ -59,3 +57,64 @@ console.log(bb)
   - https://medium.com/laboratoria-developers/por-valor-vs-por-referencia-en-javascript-de3daf53a8b9
 
 */
+
+/*-- -------------------------------------------- --*/
+/*--        Notacion de puntos y corchetes        --*/
+/*-- -------------------------------------------- --*/
+
+var persona = {
+  nombre: "Tulio",
+  apellido: "Triviño",
+  edad: 25,
+  direccion: {
+    pais: "Chile",
+    ciudad: "Santiago",
+    edificio: {
+      nombre: "Edificio principal",
+      telefono: "2222-3333"
+    }
+  }
+}
+
+// PUNTOS
+
+// Para acceder al valor de las propiedades de un objeto utilizamos la notacion de "puntos"
+// console.log( persona.direccion )
+// console.log( persona.direccion.pais )
+
+// Para agregar una nueva propiedad al objeto "persona" sin tener que editar de manera directa y literal se hace con la notacion de punto, seguido del nombre de la propiedad a agregar y asigando el valor
+
+// persona.direccion.zipcode = 11101
+// console.log( persona.direccion )
+
+// ¿Que pasa si queremos obtener el telefono del edificio, de la direccion, de la persona?
+// La manera literal de hacerlo seria:
+
+// console.log( persona.direccion.edificio.telefono )
+
+// Pero esta forma es muy larga de escribir si se necesita trabajar con datos en un objeto de nivel muy profundo, lo mejor seria aprovechar el hecho de que los objetos pueden ser pasados por referencia al asignarlos a variables nuevas, y desde ahi "hacer un atajo" para acceder a los valores que necesitamos
+
+// Asigno el objeto "edificio", que se encuentra en el objeto "direccion" del objeto "persona" a una variable llamada "edificio"
+// var nuevoEdificio = persona.direccion.edificio
+
+// Y desde ahi, como el valor del objeto "edificio" ha sido pasado por referencia puedo acceder directamente a sus propiedades desde la variable "nuevoEdificio"
+// console.log( nuevoEdificio.telefono )
+
+// De la misma forma puedo crear propiedades nuevas al objeto "edificio" desde la variable "nuevoEdificio", sin tener que recorrer todo el objeto persona con la notacion de puntos
+// nuevoEdificio.numeroPiso = "8vo Piso"
+
+// console.log( persona );
+
+// CORCHETES
+
+// Otra forma en la que podemos acceder a los valores de las propiedades de un objeto es con la notacion de "corchetes"
+
+// console.log( persona["direccion"]["edificio"])
+
+// Una forma en que nos beneficia la notacion de corchetes es que podemos asignar las propiedades de un objeto a una variable y trabajar con esa variable, de esa manera si cambiar el nombre de la propiedad, solo la cambiamos en la variable y no en todo el codigo
+
+// Asigno el valor de la propiedad "edad" del objeto "persona" a una variable llamada "campo"
+var campo = "edad"
+
+// Puedo acceder al valor de la propiedad "edad" llamando con la notacion de corchetes su asignacion en la variable campo, si por alguna razon la propiedad "campo" debe cambiar su nombre solo se cambiaria en la asignacion de variable y en el objeto, y no en todo el codigo
+console.log( persona[campo] );
