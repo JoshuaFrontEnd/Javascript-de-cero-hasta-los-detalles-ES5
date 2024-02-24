@@ -229,14 +229,92 @@
 // } )
 
 // - Enviar una funcion expresiva
-function imprimir( fn ){
+// function imprimir( fn ){
 
-  fn()
+//   fn()
+
+// }
+
+// const funcionExpresiva = function() {
+//   console.log( "Funcion expresiva" );
+// }
+
+// imprimir( funcionExpresiva )
+
+/*-- ----------------------------------------------------- --*/
+/*--               El Return en las Funciones              --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript existe una palabra reservada para retornar un valor desde una función llamada "return", las funciones pueden retornar cualquier tipo de valor
+
+// - Obtener un numero aleatorio entre cero y uno y sumarle 10
+// function obtenerAleatorio(){
+//   return Math.random()
+// }
+
+// console.log( obtenerAleatorio() + 10 );
+
+// - Obtener un nombre y concatenar un apellido
+// function obtenerNombre(){
+//   return "Tulio"
+// }
+
+// console.log( obtenerNombre() + " Triviño" );
+
+// - Obtener un booleano
+// function esMayor05(){
+
+//   if ( obtenerAleatorio() > 0.5 ){
+//     return true
+//   } else {
+//     return false
+//   }
+
+// }
+
+// if ( esMayor05() ) {
+//   console.log("Es mayor a 0.5")
+// } else {
+//   console.log("Es menor a 0.5")
+// }
+
+// - Obtener un objeto
+function crearPersona( nombre, apellido ){
+  return {
+    nombre: nombre,
+    apellido: apellido
+  }
+}
+
+var persona = crearPersona("Tulio", "Triviño")
+// console.log( persona );
+
+// - Obtener una funcion, para obtener una funcion desde una funcion, declarada en el return se puede hacer de dos formas:
+function creaFuncion(){
+
+  return function( nombre ){
+    console.log("Me creo: " + nombre )
+
+    return function(){
+      console.log( "Si, podemos ser infinitamente anidadas" );
+    }
+
+  }
 
 }
 
-const funcionExpresiva = function() {
-  console.log( "Funcion expresiva" );
-}
+// - Primera forma:
 
-imprimir( funcionExpresiva )
+// - Recibir el return de la primera funcion "creaFuncion" y asignarle ese valor a una variable
+var primeraFnAnidada = creaFuncion()
+
+// Como se asigno una funcion a una variable, para poder ejecutar esa funcion habria que tratar la varibable como si fuese una funcion
+var segundaFnAnidada = primeraFnAnidada( persona.nombre )
+
+segundaFnAnidada()
+
+// - Segunda forma:
+
+// - Cuando declaramos los parentesis () al nombre de la funcion, esto quiere decir que estamos ejecutando la funcion, entonces si tenemos dos funciones anidadas bastaria con declarar tantos parentesis como tanta funciones hayan anidadas:
+
+creaFuncion()( persona.nombre )()
