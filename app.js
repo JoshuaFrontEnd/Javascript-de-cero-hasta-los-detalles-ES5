@@ -279,42 +279,66 @@
 // }
 
 // - Obtener un objeto
-function crearPersona( nombre, apellido ){
-  return {
-    nombre: nombre,
-    apellido: apellido
-  }
-}
+// function crearPersona( nombre, apellido ){
+//   return {
+//     nombre: nombre,
+//     apellido: apellido
+//   }
+// }
 
-var persona = crearPersona("Tulio", "Triviño")
+// var persona = crearPersona("Tulio", "Triviño")
 // console.log( persona );
 
 // - Obtener una funcion, para obtener una funcion desde una funcion, declarada en el return se puede hacer de dos formas:
-function creaFuncion(){
+// function creaFuncion(){
 
-  return function( nombre ){
-    console.log("Me creo: " + nombre )
+//   return function( nombre ){
+//     console.log("Me creo: " + nombre )
 
-    return function(){
-      console.log( "Si, podemos ser infinitamente anidadas" );
-    }
+//     return function(){
+//       console.log( "Si, podemos ser infinitamente anidadas" );
+//     }
 
-  }
+//   }
 
-}
+// }
 
 // - Primera forma:
 
 // - Recibir el return de la primera funcion "creaFuncion" y asignarle ese valor a una variable
-var primeraFnAnidada = creaFuncion()
+// var primeraFnAnidada = creaFuncion()
 
 // Como se asigno una funcion a una variable, para poder ejecutar esa funcion habria que tratar la varibable como si fuese una funcion
-var segundaFnAnidada = primeraFnAnidada( persona.nombre )
+// var segundaFnAnidada = primeraFnAnidada( persona.nombre )
 
-segundaFnAnidada()
+// segundaFnAnidada()
 
 // - Segunda forma:
 
 // - Cuando declaramos los parentesis () al nombre de la funcion, esto quiere decir que estamos ejecutando la funcion, entonces si tenemos dos funciones anidadas bastaria con declarar tantos parentesis como tanta funciones hayan anidadas:
 
-creaFuncion()( persona.nombre )()
+// creaFuncion()( persona.nombre )()
+
+/*-- ----------------------------------------------------- --*/
+/*--               Funciones de primera clase              --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript todos los datos no primitivos son objetos, por ejemplo si creamos una funcion y a esa funcion fuera de su "scope" le asignamos una propiedad llamada "nombre" con valor "maria", javascript añadira esa propiedad a la funcion como si fuese un objeto, por lo tanto se dice que por tener este comportamiento las funciones son de primera clase
+function a(){
+  var n = a.nombre
+  console.log("Funcion: ", n);
+}
+
+a.nombre = "Bodoque"
+
+// De igual manera podemos asignar propiedades con objetos
+a.direccion = {
+  pais: "Chile",
+  ciudad: "Titirilquen",
+  edificio: {
+    piso: "8vo",
+    nombre: "Edificio principal"
+  }
+}
+
+a()
