@@ -146,6 +146,16 @@
 // - Si la funcion es llamada sin los parentesis retornara la definicion de la funcion, osea el codigo literal:
 // primeraFuncion
 
+// - Funcion declarativa:
+function sumar( a, b) {
+  return a + b
+}
+
+// - Expresion de funcion:
+var sumar = function ( a, b ) {
+  return a + b
+}
+
 /*-- ----------------------------------------------------- --*/
 /*--      Argumentos o parametros de las Funciones         --*/
 /*-- ----------------------------------------------------- --*/
@@ -395,27 +405,27 @@
 
 // - Lo mas recomendable al usar "THIS" es ir consultando con un "console.log" su valor, de esta manera podemos usar el valor de "THIS" del "scope" "direccion" dentro de la función "nuevaDireccion", asignando el valor del "THIS" que necesitamos a una variable
 
-var persona = {
+// var persona = {
 
-  direccion: {
-    pais: "Costa Rica",
-    obtenerPais: function(){
+//   direccion: {
+//     pais: "Costa Rica",
+//     obtenerPais: function(){
 
-      // Obtengo el valor de "THIS" del "scope" "direccion" y lo asigno a una variable con nombre "self"
-      var self = this;
+//       // Obtengo el valor de "THIS" del "scope" "direccion" y lo asigno a una variable con nombre "self"
+//       var self = this;
 
-      var nuevaDireccion = function(){
+//       var nuevaDireccion = function(){
 
-        // Acá como estoy usando una funcion sin su constructor el valor de "THIS" es el objeto "window", pero puedo usar el valor de la variable "self" para usar el "THIS" del "scope" de "direccion"
+//         // Acá como estoy usando una funcion sin su constructor el valor de "THIS" es el objeto "window", pero puedo usar el valor de la variable "self" para usar el "THIS" del "scope" de "direccion"
 
-        console.log( self )
-        console.log( "El pais es: " + self.pais);
-      }
+//         console.log( self )
+//         console.log( "El pais es: " + self.pais);
+//       }
 
-      nuevaDireccion()
+//       nuevaDireccion()
 
-    }
-  }
-}
+//     }
+//   }
+// }
 
-persona.direccion.obtenerPais()
+// persona.direccion.obtenerPais()
