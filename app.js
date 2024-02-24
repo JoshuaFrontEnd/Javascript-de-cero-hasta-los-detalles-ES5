@@ -324,21 +324,98 @@
 /*-- ----------------------------------------------------- --*/
 
 // - En Javascript todos los datos no primitivos son objetos, por ejemplo si creamos una funcion y a esa funcion fuera de su "scope" le asignamos una propiedad llamada "nombre" con valor "maria", javascript añadira esa propiedad a la funcion como si fuese un objeto, por lo tanto se dice que por tener este comportamiento las funciones son de primera clase
-function a(){
-  var n = a.nombre
-  console.log("Funcion: ", n);
-}
+// function a(){
+//   var n = a.nombre
+//   console.log("Funcion: ", n);
+// }
 
-a.nombre = "Bodoque"
+// a.nombre = "Bodoque"
 
 // De igual manera podemos asignar propiedades con objetos
-a.direccion = {
-  pais: "Chile",
-  ciudad: "Titirilquen",
-  edificio: {
-    piso: "8vo",
-    nombre: "Edificio principal"
+// a.direccion = {
+//   pais: "Chile",
+//   ciudad: "Titirilquen",
+//   edificio: {
+//     piso: "8vo",
+//     nombre: "Edificio principal"
+//   }
+// }
+
+// a()
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Metodos y el objeto THIS              --*/
+/*-- ----------------------------------------------------- --*/
+
+// En Javascript los objetos tienen propiedades y metodos, las propiedades son valores y los metodos son funciones dentro del objeto
+
+// var persona = {
+//   nombre: "Juan Carlos",
+//   apellido: "Bodoque",
+//   imprimirNombre: function(){
+//     // - Esto dara error, por que javascript buscara una variable llamada "nombre", y lo unico que hay declarado es una propiedad
+//     console.log( nombre );
+//   }
+// }
+
+// var persona = {
+//   nombre: "Juan Carlos",
+//   apellido: "Bodoque",
+//   imprimirNombre: function(){
+//     // - Para obtener el valor de la propiedad "nombre" usamos la palabra reservada "THIS" que hace referencia al "scope" del objeto persona
+//     console.log( this.nombre );
+//   }
+// }
+
+// - This hace referencia al "scope" donde se encuentra, para poder obtener los valores de las propiedades de ese "scope"
+
+// var persona = {
+//   nombre: "Juan Carlos",
+//   apellido: "Bodoque",
+//   imprimirNombre: function(){
+//     // - Aca "THIS" hace referencia al "scope" del objeto "persona"
+//     console.log( this.nombre + " " + this.apellido );
+//   },
+//   direccion: {
+//     pais: "Costa Rica",
+//     obtenerPais: function(){
+//       // - Aca "THIS" hace referencia al "scope" del objeto "direccion"
+//       console.log( "El pais es: " + this.pais);
+
+//       var nuevaDireccion = function(){
+//         // - Aca sorprendentemente "THIS" hace referencia al "scope" global, es decir "window", esto sucede porque el valor de "THIS" está definido por como se llama a la función. Si la función se llama  de manera habitual, el valor de "THIS" es "window"; si la función se llama como método como constructor, entonces "THIS" es igual al objeto.
+//         console.log( this )
+//       }
+
+//       nuevaDireccion()
+
+//     }
+//   }
+// }
+
+// - Lo mas recomendable al usar "THIS" es ir consultando con un "console.log" su valor, de esta manera podemos usar el valor de "THIS" del "scope" "direccion" dentro de la función "nuevaDireccion", asignando el valor del "THIS" que necesitamos a una variable
+
+var persona = {
+
+  direccion: {
+    pais: "Costa Rica",
+    obtenerPais: function(){
+
+      // Obtengo el valor de "THIS" del "scope" "direccion" y lo asigno a una variable con nombre "self"
+      var self = this;
+
+      var nuevaDireccion = function(){
+
+        // Acá como estoy usando una funcion sin su constructor el valor de "THIS" es el objeto "window", pero puedo usar el valor de la variable "self" para usar el "THIS" del "scope" de "direccion"
+
+        console.log( self )
+        console.log( "El pais es: " + self.pais);
+      }
+
+      nuevaDireccion()
+
+    }
   }
 }
 
-a()
+persona.direccion.obtenerPais()
