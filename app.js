@@ -787,22 +787,77 @@
 
 // - Añadiendo mas logica:
 
-function ejecutarFuncion( fn ){
+// function ejecutarFuncion( fn ){
 
-  if ( fn() === 1 ){
-    return true
-  } else {
-    return false
-  }
+//   if ( fn() === 1 ){
+//     return true
+//   } else {
+//     return false
+//   }
+
+// }
+
+// console.log(
+
+//   ejecutarFuncion( function(){
+//     console.log("Funcion anonima ejecutada!!")
+//     return 1
+//   } )
+
+// )
+
+/*-- ----------------------------------------------------- --*/
+/*--            Funciones typeof e instanceof             --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Va a ver momentos donde necesitamos estar seguros del tipo de dato que estamos recibiendo antes de hacer una accion, para eso nos sirve "typeof"
+
+// - Con la siguiente funcion, utilizando "typeof", podemos ver de que tipo es el dato que enviamos por parametro
+// function identifica( param ){
+//   console.log( typeof param )
+// }
+
+// identifica( 1 )    // Number
+// identifica( "1" )  // String
+// identifica( {} )   // Object
+
+// function Persona(){}
+
+// var Tulio = new Persona()
+
+// // Pasando una funcion constructora
+// identifica( Tulio ) // Object
+
+// // Pasando una funcion anonima
+// identifica( function(){} ) // Function
+
+// - Usando "typeof" para detectar si el parametro enviado es una funcion y si lo es, ejecutarla
+
+// function identifica( param ){
+
+//   if ( typeof param === "function" ) {
+//     param()
+//   } else {
+//     console.log( param )
+//   }
+
+// }
+
+// identifica( function(){ console.log("soy una funcion anonima") } )
+
+// - Cuando necesitamos saber el tipo de objeto que ha sido creado con una funcion constructora podemos usar "instanceof", esto retorna true o false dependiendo de si coincide
+
+function identifica( param ){
+
+  console.log( param instanceof Titere )
 
 }
 
-console.log(
+function Titere(){
+  this.nombre = "Tulio"
+  this.apellido = "Triviño"
+}
 
-  ejecutarFuncion( function(){
-    console.log("Funcion anonima ejecutada!!")
-    return 1
-  } )
+var tulio = new Titere()
 
-)
-
+identifica( tulio )
