@@ -702,38 +702,94 @@
 // // Gandalf cura a legolas
 
 /*-- ----------------------------------------------------- --*/
-/*--                 Prototipos: prototype                 --*/
+/*--                 Prototipos: prototypes                --*/
 /*-- ----------------------------------------------------- --*/
 
 // - Los prototipos en Javascript permiten expandir las propiedades y metodos de un objeto sin alterar la definicion del objeto original
 
-function Persona(){
+// function Persona(){
 
-  this.nombre   = "Tulio"
-  this.apellido = "Triviño"
-  this.edad     = 30
+//   this.nombre   = "Tulio"
+//   this.apellido = "Triviño"
+//   this.edad     = 30
 
-}
+// }
 
 // - Agregando una propiedad primitiva al objeto de tipo "Persona" sin modificar su definicion inicial, como no se ha modificado su definicion, para ver esta propiedad agregada, hay que revisar en la consola el "prototype" de "Persona"
-Persona.prototype.pais = "Chile"
+// Persona.prototype.pais = "Chile"
 
 // - El potencial de los "prototypes" se basa en que si tenemos 1000 objetos (por decir un numero grande) y tenemos un solo metodo que se repite 1000 veces lo mejor seria cargarlo en un "prototype", de esta manera el metodo solo se cargaria una vez en memoria:
-Persona.prototype.imprimirInfo = function(){
-  console.log( this.nombre + " " + this.apellido + " (" + this.edad + ")" )
-}
+// Persona.prototype.imprimirInfo = function(){
+//   console.log( this.nombre + " " + this.apellido + " (" + this.edad + ")" )
+// }
 
-var titere = new Persona()
+// var titere = new Persona()
 
-console.log( titere )
+// console.log( titere )
 
-titere.imprimirInfo()
+// titere.imprimirInfo()
 
 // - Otro ejemplo de la pontencia que tienen los "prototypes" es por ejemplo para aplicar un metodo a tipos de datos, en este caso creo un "prototype" que me permite detectar si los tipos de datos primitivos de tipo "Number" son positivos o negativos:
 
-Number.prototype.esPositivo = function(){
+// Number.prototype.esPositivo = function(){
 
-  if ( this > 0) {
+//   if ( this > 0) {
+//     return true
+//   } else {
+//     return false
+//   }
+
+// }
+
+// var pos = 5
+// pos.esPositivo() // retorna true
+
+// var neg = -5
+// neg.esPositivo // retorna false
+
+// - Basicamente Javascript esta construido sobre prototipos, y podemos verlos cada vez que necesitamos acceder a metodos nativos de cada tipo de datos, por ejemplo el metodo "tostring" de los objetos, o el metodo "push" de los arreglos, etc.
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Funciones anonimas                    --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Las funciones anonimas, tal como lo indica su nombre, son funciones que no tienen nombre, estas nos permiten encapsular el codigo para prevenir que sea accidentalmente manipulado o para evitar problemas de "scope"
+
+// - Al declarar una variable de nombre, en este caso "scopeGlobal" se creara en el scope global, esto significa que esta variable podra ser modificada en cualquier parte del programa
+// var scopeGlobal = 10 // console.log( scopeGlobal ) = 10
+
+// - Debido a esto podemos cambiar de manera muy sencilla el valor de "scopeGlobal" al sobreescribir su valor, en este caso utilizando una funcion, pero se puede hacer de diferentes maneras:
+// function cambiarScopeGlobal(){
+//   scopeGlobal = 20   // console.log( scopeGlobal ) = 20
+// }
+
+// - Para evitar esto podemos usar funciones anonimas, la sintaxis es la siguiente:
+
+// ( function(){
+//   // En el "scope" de la funcion anonima "scopeGlobal" vale 10
+//   var scopeGlobal = 10 // console.log( scopeGlobal ) = 10
+// } )()
+
+// Pero si intentamos modificar "scopeGlobal" desde el scope global, estaremos declarando una nueva variable llamada "scopeGlobal" con el nuevo valor asignado, es decir, en la funcion anonima "scopeGlobal" valdra 10 y en el ambito global "scopeGlobal" valdra 20
+// scopeGlobal = 20
+
+// - Otro ejemplo para las funciones anonimas es cuando necesitamos crear una funcion en tiempo de ejecucion:
+
+// function ejecutarFuncion( fn ){
+
+//   fn();
+
+// }
+
+// ejecutarFuncion( function(){
+//   console.log("Funcion anonima ejecutada!!")
+// } )
+
+// - Añadiendo mas logica:
+
+function ejecutarFuncion( fn ){
+
+  if ( fn() === 1 ){
     return true
   } else {
     return false
@@ -741,10 +797,12 @@ Number.prototype.esPositivo = function(){
 
 }
 
-var pos = 5
-pos.esPositivo() // retorna true
+console.log(
 
-var neg = -5
-neg.esPositivo // retorna false
+  ejecutarFuncion( function(){
+    console.log("Funcion anonima ejecutada!!")
+    return 1
+  } )
 
-// - Basicamente Javascript esta construido sobre prototipos, y podemos verlos cada vez que necesitamos acceder a metodos nativos de cada tipo de datos, por ejemplo el metodo "tostring" de los objetos, o el metodo "push" de los arreglos, etc.
+)
+
