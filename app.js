@@ -450,21 +450,21 @@
 
 // - Por otro lado al usar "NEW" estamos creando un nuevo "scope" por lo cual podemos usar "THIS" con el valor del "scope" creado:
 
-function Persona( nombre, apellido ){
+// function Persona( nombre, apellido ){
 
-  this.nombre = nombre;
-  this.apellido = apellido;
-  this.edad = 30;
+//   this.nombre = nombre;
+//   this.apellido = apellido;
+//   this.edad = 30;
 
-  this.imprimirPersona = function(){
-    return this.nombre + " " + this.apellido + "(" + this.edad + ")"
-  }
+//   this.imprimirPersona = function(){
+//     return this.nombre + " " + this.apellido + "(" + this.edad + ")"
+//   }
 
-}
+// }
 
-var Tulio = new Persona( "Tulio", "Triviño" )
+// var Tulio = new Persona( "Tulio", "Triviño" )
 
-console.log( Tulio )
+// console.log( Tulio )
 
 /*
 
@@ -642,3 +642,61 @@ console.log( Tulio )
   Y asi con los demás objetos.
 
 */
+
+/*-- ----------------------------------------------------- --*/
+/*--     El señor de los anillos: The Javascript Game      --*/
+/*-- ----------------------------------------------------- --*/
+
+// Creo una funcion constructora ( existe una convencion en javascript para nombrar con mayuscula la primera letra de la funcion, asi se sabe que sera un funcion constructora ), y defino las propiedades de los objetos a crear. pv = puntos de vida, sp = special points
+function Jugador( nombre ){
+
+  this.nombre = nombre;
+  this.pv = 100;
+  this.sp = 100;
+
+  // Creo el metodo de curar
+  this.curar = function( jugadorObjetivo ){
+
+    // Validacion para detectar que el jugador que usara el metodo tenga al menos la cantidad de special points que recibe el metodo
+    if ( this.sp >= 40 ){
+      // El jugador que use el metodo de curar perdera 40 special points
+      this.sp -= 40
+      // El jugador a curar se cura en 20 puntos
+      jugadorObjetivo.pv += 20
+    } else {
+      // Si no le queda sp que muestre el siguiente mensaje
+      console.info( this.nombre + " no tiene sp" );
+    }
+
+    this.estado ( jugadorObjetivo )
+
+  }
+
+  this.tirarFlecha = function( jugadorObjetivo ){
+
+    if ( jugadorObjetivo.pv > 40 ){
+      jugadorObjetivo.pv -= 40
+    } else {
+      jugadorObjetivo.pv = 0
+      console.error( jugadorObjetivo.nombre + " murio!")
+    }
+
+    this.estado ( jugadorObjetivo )
+  }
+
+  this.estado = function( jugadorObjetivo ){
+    console.info( this )
+    console.info( jugadorObjetivo )
+  }
+
+}
+
+// Creo los objetos de tipo Jugador
+var gandalf = new Jugador( "Gandalf" )
+var legolas = new Jugador( "Legolas" )
+
+console.log( gandalf )
+console.log( legolas )
+
+gandalf.curar( legolas )
+// Gandalf cura a legola
