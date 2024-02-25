@@ -807,7 +807,7 @@
 // )
 
 /*-- ----------------------------------------------------- --*/
-/*--            Funciones typeof e instanceof             --*/
+/*--            Funciones typeof e instanceof              --*/
 /*-- ----------------------------------------------------- --*/
 
 // - Va a ver momentos donde necesitamos estar seguros del tipo de dato que estamos recibiendo antes de hacer una accion, para eso nos sirve "typeof"
@@ -847,17 +847,119 @@
 
 // - Cuando necesitamos saber el tipo de objeto que ha sido creado con una funcion constructora podemos usar "instanceof", esto retorna true o false dependiendo de si coincide
 
-function identifica( param ){
+// function identifica( param ){
 
-  console.log( param instanceof Titere )
+//   console.log( param instanceof Titere )
 
-}
+// }
 
-function Titere(){
-  this.nombre = "Tulio"
-  this.apellido = "Triviño"
-}
+// function Titere(){
+//   this.nombre = "Tulio"
+//   this.apellido = "Triviño"
+// }
 
-var tulio = new Titere()
+// var tulio = new Titere()
 
-identifica( tulio )
+// identifica( tulio )
+
+/* -------------------------------------------------------------------------
+  Sección 3: Profundizando objetos
+------------------------------------------------------------------------- */
+
+/*-- ----------------------------------------------------- --*/
+/*--                         Arreglos                      --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript los arreglos son una coleccion de objetos y su posicion es en base a cero, esto quiere decir que la primera posicion siempre sera 0
+
+// var arr = [ 5, 4, 3, 2, 1]
+
+// console.log( arr )
+// console.log( arr[0] )
+
+// - Javascript posee multiples metodos (protipos) para utilizar con los arreglos, entre ellos:
+
+// - Reverse: invertir los datos del arreglo
+
+// arr.reverse()
+// console.log( arr )
+
+// - Map: nos devuelve un nuevo arreglo despues de ejecutar una funcion por cada elemento del arreglo original
+
+// newArr = arr.map( function( elem ){
+//   elem *= elem
+//   return elem
+// })
+
+// console.log( arr, newArr )
+
+// - Podemos usar Map con distintos objetos que poseen diferente funcionalidades, en este caso usaremos Map con el objeto Math.sqrt el cual devuelve la raiz cuadrada positiva de un numero, Map aplicara esta funcion a cada elemento del arreglo, devolviendo la raiz cuadrada de cada elemento
+
+// raizSqrt = newArr.map( Math.sqrt )
+// console.log( raizSqrt )
+
+// - Join: este metodo UNE todos los elementos del array, convirtiendo todo a una cadena de texto, separando los elementos por comas, aunque podemos especificar el caracter que usaremos para separar los elementos, declarandolo como parametro
+
+// joined = raizSqrt.join("|")
+// console.log( joined )
+
+// - Split: Este metodo sirve para dividir una cadena de texto (string) en un array, y podemos especificar el caracter que separara los elementos de la cadena especificandolo como parametro, si no se especifica, la cadena se convertira en un solo elemento del arreglo
+
+// divided = joined.split("|")
+// console.log( divided )
+
+// - Push: Con este metodo podemos añadir uno o mas elementos al final del arreglo
+
+// divided.push("6")
+// console.log( divided )
+
+// - Unshift: añade uno o mas elementos al principio del arreglo
+
+// divided.unshift("0")
+// console.log( divided )
+
+// - toString: devuelve una cadena que representa un objeto, a diferencia de "join" en "toString" no podemos especificar un separador
+// console.log( divided.toString() )
+
+// - Pop: elimina el último elemento de un array y lo devuelve. Este método cambia la longitud del array
+
+// eliminarUltimo = divided.pop()
+// console.log("Nuevo arreglo sin el ultimo elemento: ", divided )
+// console.log("Elemento eliminado: " + eliminarUltimo )
+
+// - Splice: cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos, para usar este metodo deberemos usar ciertos parametros:
+
+// divided.splice( start, deleteCount, item1, item2,...)
+
+// - start: parametro obligatorio numerico, este parametro define donde se comenzara a cambiar el array, si solo se especifica ese parametro y nada mas, se conservara el valor de la posicion asignada mas los valores anteriores y se eliminara todo lo demas
+// divided.splice( 2 )
+// console.log( "Se han eliminado todos los elementos desde la posicion 2", divided )
+
+// - deleleCount: parametro opcional numerico, este parametro trabaja en conjunto con el parametro anterior "start", al definirlo se especificara cuantos elementos se eliminaran desde la posicion definida en "start"
+
+// divided.splice( 1, 1 )
+// console.log( "Desde la posicion 1 elimina 1 elemento ", divided )
+
+var arrEjemplo = ["0","1","2","3","4","5"]
+
+// arrEjemplo.splice( 2, 3 )
+// console.log( "Desde la posicion 2 elimina 3 elementos", arrEjemplo )
+
+// - item1, item2, ...: Parametro opcional para agregar elementos, a partir del tercer parametro "splice" nos permite agregar elementos al array, utilizando start, deleteCount y el elemento a agregar podemos eliminar y agregar al mismo tiempo elementos a un arreglo:
+
+// arrEjemplo.splice( 1, 1, "10", "20", "30")
+// console.log( "Desde la posicion 1, elimina 1 elemento y reemplaza por: '10', '20', '30'", arrEjemplo )
+
+// Si no deseamos reemplazar/eliminar y solo agregar, podemos declarar con valor 0 el parametro "deleteCount"
+// arrEjemplo.splice( 1, 0, "10", "20", "30")
+// console.log( "Desde la posicion 1, agrega: '10', '20', '30'", arrEjemplo )
+
+// Slice: Este metodo hace una copia de una parte del array especificado, desde el parametro inicio, hasta el parametro fin, pero no incluye el parametro final
+
+// arrSlice = arrEjemplo.slice( 0, 3)
+// console.log( "Array original: ", arrEjemplo )
+// console.log( "Copia con parte del array original, extraida desde la posicion 0 hasta la posicion 2", arrSlice );
+
+// - Length: con este metodo podemos obtener la longitud del array
+
+console.log( arrEjemplo.length ) // 6
