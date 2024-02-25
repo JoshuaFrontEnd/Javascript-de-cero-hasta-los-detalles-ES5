@@ -648,55 +648,103 @@
 /*-- ----------------------------------------------------- --*/
 
 // Creo una funcion constructora ( existe una convencion en javascript para nombrar con mayuscula la primera letra de la funcion, asi se sabe que sera un funcion constructora ), y defino las propiedades de los objetos a crear. pv = puntos de vida, sp = special points
-function Jugador( nombre ){
+// function Jugador( nombre ){
 
-  this.nombre = nombre;
-  this.pv = 100;
-  this.sp = 100;
+//   this.nombre = nombre;
+//   this.pv = 100;
+//   this.sp = 100;
 
-  // Creo el metodo de curar
-  this.curar = function( jugadorObjetivo ){
+//   // Creo el metodo de curar
+//   this.curar = function( jugadorObjetivo ){
 
-    // Validacion para detectar que el jugador que usara el metodo tenga al menos la cantidad de special points que recibe el metodo
-    if ( this.sp >= 40 ){
-      // El jugador que use el metodo de curar perdera 40 special points
-      this.sp -= 40
-      // El jugador a curar se cura en 20 puntos
-      jugadorObjetivo.pv += 20
-    } else {
-      // Si no le queda sp que muestre el siguiente mensaje
-      console.info( this.nombre + " no tiene sp" );
-    }
+//     // Validacion para detectar que el jugador que usara el metodo tenga al menos la cantidad de special points que recibe el metodo
+//     if ( this.sp >= 40 ){
+//       // El jugador que use el metodo de curar perdera 40 special points
+//       this.sp -= 40
+//       // El jugador a curar se cura en 20 puntos
+//       jugadorObjetivo.pv += 20
+//     } else {
+//       // Si no le queda sp que muestre el siguiente mensaje
+//       console.info( this.nombre + " no tiene sp" );
+//     }
 
-    this.estado ( jugadorObjetivo )
+//     this.estado ( jugadorObjetivo )
 
-  }
+//   }
 
-  this.tirarFlecha = function( jugadorObjetivo ){
+//   this.tirarFlecha = function( jugadorObjetivo ){
 
-    if ( jugadorObjetivo.pv > 40 ){
-      jugadorObjetivo.pv -= 40
-    } else {
-      jugadorObjetivo.pv = 0
-      console.error( jugadorObjetivo.nombre + " murio!")
-    }
+//     if ( jugadorObjetivo.pv > 40 ){
+//       jugadorObjetivo.pv -= 40
+//     } else {
+//       jugadorObjetivo.pv = 0
+//       console.error( jugadorObjetivo.nombre + " murio!")
+//     }
 
-    this.estado ( jugadorObjetivo )
-  }
+//     this.estado ( jugadorObjetivo )
+//   }
 
-  this.estado = function( jugadorObjetivo ){
-    console.info( this )
-    console.info( jugadorObjetivo )
+//   this.estado = function( jugadorObjetivo ){
+//     console.info( this )
+//     console.info( jugadorObjetivo )
+//   }
+
+// }
+
+// // Creo los objetos de tipo Jugador
+// var gandalf = new Jugador( "Gandalf" )
+// var legolas = new Jugador( "Legolas" )
+
+// console.log( gandalf )
+// console.log( legolas )
+
+// gandalf.curar( legolas )
+// // Gandalf cura a legolas
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Prototipos: prototype                 --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Los prototipos en Javascript permiten expandir las propiedades y metodos de un objeto sin alterar la definicion del objeto original
+
+function Persona(){
+
+  this.nombre   = "Tulio"
+  this.apellido = "Triviño"
+  this.edad     = 30
+
+}
+
+// - Agregando una propiedad primitiva al objeto de tipo "Persona" sin modificar su definicion inicial, como no se ha modificado su definicion, para ver esta propiedad agregada, hay que revisar en la consola el "prototype" de "Persona"
+Persona.prototype.pais = "Chile"
+
+// - El potencial de los "prototypes" se basa en que si tenemos 1000 objetos (por decir un numero grande) y tenemos un solo metodo que se repite 1000 veces lo mejor seria cargarlo en un "prototype", de esta manera el metodo solo se cargaria una vez en memoria:
+Persona.prototype.imprimirInfo = function(){
+  console.log( this.nombre + " " + this.apellido + " (" + this.edad + ")" )
+}
+
+var titere = new Persona()
+
+console.log( titere )
+
+titere.imprimirInfo()
+
+// - Otro ejemplo de la pontencia que tienen los "prototypes" es por ejemplo para aplicar un metodo a tipos de datos, en este caso creo un "prototype" que me permite detectar si los tipos de datos primitivos de tipo "Number" son positivos o negativos:
+
+Number.prototype.esPositivo = function(){
+
+  if ( this > 0) {
+    return true
+  } else {
+    return false
   }
 
 }
 
-// Creo los objetos de tipo Jugador
-var gandalf = new Jugador( "Gandalf" )
-var legolas = new Jugador( "Legolas" )
+var pos = 5
+pos.esPositivo() // retorna true
 
-console.log( gandalf )
-console.log( legolas )
+var neg = -5
+neg.esPositivo // retorna false
 
-gandalf.curar( legolas )
-// Gandalf cura a legola
+// - Basicamente Javascript esta construido sobre prototipos, y podemos verlos cada vez que necesitamos acceder a metodos nativos de cada tipo de datos, por ejemplo el metodo "tostring" de los objetos, o el metodo "push" de los arreglos, etc.
