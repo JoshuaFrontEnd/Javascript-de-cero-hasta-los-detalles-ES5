@@ -867,7 +867,7 @@
 ------------------------------------------------------------------------- */
 
 /*-- ----------------------------------------------------- --*/
-/*--                         Arreglos                      --*/
+/*--                    Arreglos: metodos                  --*/
 /*-- ----------------------------------------------------- --*/
 
 // - En Javascript los arreglos son una coleccion de objetos y su posicion es en base a cero, esto quiere decir que la primera posicion siempre sera 0
@@ -940,7 +940,7 @@
 // divided.splice( 1, 1 )
 // console.log( "Desde la posicion 1 elimina 1 elemento ", divided )
 
-var arrEjemplo = ["0","1","2","3","4","5"]
+// var arrEjemplo = ["0","1","2","3","4","5"]
 
 // arrEjemplo.splice( 2, 3 )
 // console.log( "Desde la posicion 2 elimina 3 elementos", arrEjemplo )
@@ -962,4 +962,78 @@ var arrEjemplo = ["0","1","2","3","4","5"]
 
 // - Length: con este metodo podemos obtener la longitud del array
 
-console.log( arrEjemplo.length ) // 6
+// console.log( arrEjemplo.length ) // 6
+
+/*-- ----------------------------------------------------- --*/
+/*--                    Arreglos: datos                    --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Javascript es muy flexible a la hora de trabajar con datos en los arreglos:
+
+var arr = [
+  true,
+  {
+    nombre: 'Policarpio',
+    apellido: 'Avendaño'
+  },
+  function (){
+    console.log("Estoy viviendo en un arreglo")
+  },
+  function ( persona ){
+    console.log( persona.nombre + " " + persona.apellido )
+  },
+  [
+    "Tulio",
+    "Bodoque",
+    "Patana",
+    "Juanin",
+    [
+      "Joe Pino",
+      "Freddy Turbina",
+      "Pepe Lota",
+      function (){
+        console.log( this )
+      }
+    ]
+  ]
+]
+
+// - Puedo obtener los valores del arreglo accediendo a sus posiciones:
+
+console.log( arr ) // Posicion 0
+console.log( arr[0] ) // Posicion 1
+
+// - Incluso como en la posicion 1 existe un objeto, puedo acceder a sus propiedades con la notacion de puntos:
+
+console.log( arr[1].nombre + " " + arr[1].apellido )
+
+// - Para invocar la funcion de la posicion 2:
+
+arr[2]()
+
+// - Para invocar la funcion de la posicion 3, utilizando los datos de la posicion 1 como parametros
+
+arr[3]( arr[1] )
+
+// - Obteniendo el valor de la 1 posicion del arreglo que se encuentra en la posicion 4 del arreglo "arr"
+
+console.log( arr[4][1] )
+
+// - Cambiar el valor de la posicion 1 del arreglo que se encuentra dentro del arreglo de la posicion 4 del arreglo "arr"
+
+// - Paso por referencia el arreglo que necesito modificar
+var arrModificado = arr[4][4]
+
+// - Cambio el valor de la posicion solicitada
+arrModificado[1] = "Cesar"
+
+// - Imprimo el arreglo modificado
+console.log( arr[4][4] )
+
+// - Como cambie la referencia he cambiado el arreglo original
+console.log( arr )
+
+// - Acceder a la funcion del arreglo que se encuentra dentro del arreglo de la posicion 4 del arreglo "arr"
+
+arrModificado[3]()
+
