@@ -1052,14 +1052,46 @@
 // miFuncion( 10 )
 
 // - Si necesitamos validar que se envien un numero especifico de parametros podemos hacerlo asi:
-function miFuncion( a, b, c, d ) {
-  if ( arguments.length !== 4 ){
-    console.error( "La funcion necesita 4 parametros" )
-    return
-  }
+// function miFuncion( a, b, c, d ) {
+//   if ( arguments.length !== 4 ){
+//     console.error( "La funcion necesita 4 parametros" )
+//     return
+//   }
 
-  console.log( a + b + c + d )
+//   console.log( a + b + c + d )
+
+// }
+
+// miFuncion( 10, 20)
+
+/*-- ----------------------------------------------------- --*/
+/*--                Sobrecarga de Operadores               --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript no existe la sobrecarga de operadores, pero se pueden usar distintas estrategias para emular este comportamiento, mas no igualarlo:
+
+// - Si tenemos una funcion donde necesitamos dos argumentos, pero existe la posibilidad de que esos parametros no sean enviados, podemos asignarles valor por defecto:
+
+// - Si no viene el nombre se asigna el valor de "sin nombre" a la variable "nombre"
+// - Si no viene el precio se asigna el valor de 0 a la variable "precio"
+
+function crearProducto( nombre, precio){
+
+  nombre = nombre || "sin nombre"
+  precio = precio || 0
+
+  console.log( "Producto: " + nombre + ", Precio: " + precio )
 
 }
 
-miFuncion( 10, 20)
+// Si necesitamos setear un valor especifico, podriamos crear otra funcion que setee ese valor, y desde esa funcion llamar a crear producto:
+
+function crearProducto100( nombre ){
+  crearProducto( nombre, 100 )
+}
+
+// De igual manera si necesitamos solo setear el valor a un producto en especifico, podriamos crear una funcion que setee ese valor, y desde esa funcion llamar a crear producto:
+
+function crearProductoCamisa( precio ){
+  crearProducto( "Camisa", precio )
+}
