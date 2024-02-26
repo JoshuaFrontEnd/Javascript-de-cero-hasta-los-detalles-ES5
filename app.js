@@ -1075,23 +1075,84 @@
 // - Si no viene el nombre se asigna el valor de "sin nombre" a la variable "nombre"
 // - Si no viene el precio se asigna el valor de 0 a la variable "precio"
 
-function crearProducto( nombre, precio){
+// function crearProducto( nombre, precio){
 
-  nombre = nombre || "sin nombre"
-  precio = precio || 0
+//   nombre = nombre || "sin nombre"
+//   precio = precio || 0
 
-  console.log( "Producto: " + nombre + ", Precio: " + precio )
+//   console.log( "Producto: " + nombre + ", Precio: " + precio )
 
-}
+// }
 
 // Si necesitamos setear un valor especifico, podriamos crear otra funcion que setee ese valor, y desde esa funcion llamar a crear producto:
 
-function crearProducto100( nombre ){
-  crearProducto( nombre, 100 )
-}
+// function crearProducto100( nombre ){
+//   crearProducto( nombre, 100 )
+// }
 
 // De igual manera si necesitamos solo setear el valor a un producto en especifico, podriamos crear una funcion que setee ese valor, y desde esa funcion llamar a crear producto:
 
-function crearProductoCamisa( precio ){
-  crearProducto( "Camisa", precio )
+// function crearProductoCamisa( precio ){
+//   crearProducto( "Camisa", precio )
+// }
+
+/*-- ----------------------------------------------------- --*/
+/*--                      Poliformismo                     --*/
+/*-- ----------------------------------------------------- --*/
+
+// - El poliformismo en Javascript es la capacidad que los objetos tienen para reaccionar a distintos metodos o valores
+
+// - Si defino una funcion donde quiero saber que tipo de dato es el parametro que estoy enviando
+// function determinaDato( a ) {
+
+//   if ( a === undefined ) {
+//     console.log("A es undefined... no se que hacer")
+//   }
+
+//   if ( typeof a === "number" ) {
+//     console.log( "A es un numero, y puedo hacer operaciones con numeros" )
+//   }
+
+//   if ( typeof a === "string" ) {
+//     console.log("A es un texto, y puedo hacer operaciones con texto" )
+//   }
+
+//   if ( typeof a === "object" ) {
+//     console.log("A es un objeto... pero puede ser cualquier cosa..." )
+//   }
+
+// }
+
+// - Podria suceder que si creo un numero con el constructor Number, la funcion "determinarDato" no haga la validacion correctamente, o si?
+var b = new Number(3) // Esto es un numero, pero tambien es un objeto, de eso se trata el poliformismo
+
+console.log( b )
+
+// - La idea es que independiente del tipo de dato la funcion pueda trabajar con ese valor, entonces lo que podemos hacer es que al detectar que es un objeto determinar su instancia, asi podemos obtener el comportamiento deseado, que "b" se comporte como numero y no como objeto:
+function determinaDato( a ) {
+
+  if ( a === undefined ) {
+    console.log("A es undefined... no se que hacer")
+  }
+
+  if ( typeof a === "number" ) {
+    console.log( "A es un numero, y puedo hacer operaciones con numeros" )
+  }
+
+  if ( typeof a === "string" ) {
+    console.log("A es un texto, y puedo hacer operaciones con texto" )
+  }
+
+  if ( typeof a === "object" ) {
+    console.log("A es un objeto... pero puede ser cualquier cosa..." )
+
+    if( a instanceof Number ) {
+      console.log("A es un objeto numerico 😎");
+    }
+
+  }
+
 }
+
+determinaDato( b )
+
