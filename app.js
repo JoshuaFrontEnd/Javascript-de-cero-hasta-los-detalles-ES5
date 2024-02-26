@@ -1198,33 +1198,78 @@
 
 // - Entonces ¿De que manera podriamos obtener los distintos valores de "numero" sin que se sobreescriba?. Respuesta: Utilizando el contexto:
 
-function crearFunciones() {
+// function crearFunciones() {
 
-  var arr = []
+//   var arr = []
 
-  for ( var numero = 1; numero <=3; numero++ ) {
+//   for ( var numero = 1; numero <=3; numero++ ) {
 
-    arr.push(
+//     arr.push(
 
-      // Al crear una funcion anonima que se autoejecuta estoy creando un nuevo contexto "scope", por lo tanto al pasar el valor de la variable "numero" este queda guardado dentro del nuevo contexto, donde no podra ser sobreescrita
-      (function(numero){
+//       // Al crear una funcion anonima que se autoejecuta estoy creando un nuevo contexto "scope", por lo tanto al pasar el valor de la variable "numero" este queda guardado dentro del nuevo contexto, donde no podra ser sobreescrita
+//       (function(numero){
 
-        return function(){
-          console.log( numero )
-        }
+//         return function(){
+//           console.log( numero )
+//         }
 
-      })(numero)
+//       })(numero)
 
-    )
+//     )
 
-  }
+//   }
 
-  return arr
+//   return arr
 
-}
+// }
 
-var funciones = crearFunciones()
+// var funciones = crearFunciones()
 
-funciones[0]() // 1
-funciones[1]() // 2
-funciones[2]() // 3
+// funciones[0]() // 1
+// funciones[1]() // 2
+// funciones[2]() // 3
+
+/*-- ----------------------------------------------------- --*/
+/*--                    Objetos Number                     --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript podemos definir un dato de tipo numero de la siguiente manera:
+
+// - Usando asignacion:
+var a = 10
+
+// - Usando el constructor:
+var b = new Number(10)
+
+// - La unica diferencia, es que "a" sera un numero literal, y "b" sera un objeto numerico, por eso al hacer un comparacion estricta (===) dara false:
+
+console.log( a === b ) // false
+
+// - Pero al comparar si son iguales los valores dara true
+console.log( a == b )  // true
+
+// - Los valores de tipo numero tienen algunas funciones en su prototipo:
+
+// - toFixed: formatea el numero a una cantidad de datos decimales:
+
+console.log( a.toFixed(2) ) //10.00
+
+// - toString: convierte el numero a una cadena de texto "string"
+
+console.log( a, a.toString() ) // 10 '10'
+
+// - toPrecision: devuelve una cadena "string" que representa un objeto Number según la presicion especificada:
+console.log( a, a.toPrecision(4) ) //10 '10.00'
+
+// - infinity: cuando un numero es demasiado grande para JavaScript se considera "infinity" o si es demasiado pequeño se considera "-infinity"
+
+// - NaN: siglas de "not a number", esto sucede cuando un tipo de dato numerico en algun momento deja de ser numero, o es el resultado de sumar un numero con algun caracter:
+
+console.log( a = -10 * "f" ) // NaN
+
+// valueOf: Retorna el valor primitivo inserto en un objeto Number
+
+var b = new Number("20")
+
+console.log( b ) // Number {20}
+console.log( b.valueOf() ) // 20
