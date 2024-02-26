@@ -970,70 +970,96 @@
 
 // - Javascript es muy flexible a la hora de trabajar con datos en los arreglos:
 
-var arr = [
-  true,
-  {
-    nombre: 'Policarpio',
-    apellido: 'Avendaño'
-  },
-  function (){
-    console.log("Estoy viviendo en un arreglo")
-  },
-  function ( persona ){
-    console.log( persona.nombre + " " + persona.apellido )
-  },
-  [
-    "Tulio",
-    "Bodoque",
-    "Patana",
-    "Juanin",
-    [
-      "Joe Pino",
-      "Freddy Turbina",
-      "Pepe Lota",
-      function (){
-        console.log( this )
-      }
-    ]
-  ]
-]
+// var arr = [
+//   true,
+//   {
+//     nombre: 'Policarpio',
+//     apellido: 'Avendaño'
+//   },
+//   function (){
+//     console.log("Estoy viviendo en un arreglo")
+//   },
+//   function ( persona ){
+//     console.log( persona.nombre + " " + persona.apellido )
+//   },
+//   [
+//     "Tulio",
+//     "Bodoque",
+//     "Patana",
+//     "Juanin",
+//     [
+//       "Joe Pino",
+//       "Freddy Turbina",
+//       "Pepe Lota",
+//       function (){
+//         console.log( this )
+//       }
+//     ]
+//   ]
+// ]
 
 // - Puedo obtener los valores del arreglo accediendo a sus posiciones:
 
-console.log( arr ) // Posicion 0
-console.log( arr[0] ) // Posicion 1
+// console.log( arr ) // Posicion 0
+// console.log( arr[0] ) // Posicion 1
 
 // - Incluso como en la posicion 1 existe un objeto, puedo acceder a sus propiedades con la notacion de puntos:
 
-console.log( arr[1].nombre + " " + arr[1].apellido )
+// console.log( arr[1].nombre + " " + arr[1].apellido )
 
 // - Para invocar la funcion de la posicion 2:
 
-arr[2]()
+// arr[2]()
 
 // - Para invocar la funcion de la posicion 3, utilizando los datos de la posicion 1 como parametros
 
-arr[3]( arr[1] )
+// arr[3]( arr[1] )
 
 // - Obteniendo el valor de la 1 posicion del arreglo que se encuentra en la posicion 4 del arreglo "arr"
 
-console.log( arr[4][1] )
+// console.log( arr[4][1] )
 
 // - Cambiar el valor de la posicion 1 del arreglo que se encuentra dentro del arreglo de la posicion 4 del arreglo "arr"
 
 // - Paso por referencia el arreglo que necesito modificar
-var arrModificado = arr[4][4]
+// var arrModificado = arr[4][4]
 
 // - Cambio el valor de la posicion solicitada
-arrModificado[1] = "Cesar"
+// arrModificado[1] = "Cesar"
 
 // - Imprimo el arreglo modificado
-console.log( arr[4][4] )
+// console.log( arr[4][4] )
 
 // - Como cambie la referencia he cambiado el arreglo original
-console.log( arr )
+// console.log( arr )
 
 // - Acceder a la funcion del arreglo que se encuentra dentro del arreglo de la posicion 4 del arreglo "arr"
 
-arrModificado[3]()
+// arrModificado[3]()
 
+/*-- ----------------------------------------------------- --*/
+/*--                    Argumentos                         --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript las funciones tambien poseen sus propios prototipos, uno de ellos es el "arguments", los argumentos es un objeto que contiene los parametros que se le envian a una funcion cuando esta es invocada, de esta manera la funcion puede utilizar esos datos
+
+// - Defino una funcion que mostrara por consola los argumentos, en este caso el parametro "a" recibira el primer argumento que sea enviado cuando se invoque la funcion
+// function miFuncion( a ) {
+//   console.log( arguments )
+// }
+
+// - Invoco la funcion enviando el argumento: 10, entonces la funcion "miFuncion" le asignara este argumento al parametro "a" e imprimira por consola un objeto de un valor, ya que estamos enviando un solo parametro, el resultado será: [10]
+// miFuncion( 10 )
+
+// - Si necesitamos validar que se envien un numero especifico de parametros podemos hacerlo asi:
+function miFuncion( a, b, c, d ) {
+  if ( arguments.length !== 4 ){
+    console.error( "La funcion necesita 4 parametros" )
+    return
+  }
+
+  console.log( a + b + c + d )
+
+}
+
+miFuncion( 10, 20)
