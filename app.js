@@ -1280,7 +1280,48 @@
 
 // - En Javascript los objetos booleanos son los valores "true" o "false"
 
-var a = true
-var b = false
+// var a = true
+// var b = false
 
 // - Cuando seteamos un valor booleano con un constructor, su valor sera "false" si y solo si, es 0, -0, null, NaN, undefined
+
+/*-- ----------------------------------------------------- --*/
+/*--                    Objetos String                     --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En otros lenguajes de programacion los datos de tipo "string" son arreglos de caracteres/texto, en cambio en Javascript son objetos:
+
+// - Podemos definir un dato de tipo "string" de las siguientes formas
+var a = new String("Tulio Triviño")
+var b = "Triviño"
+
+// - Al mostrar en consola podemos ver la palabra como objeto
+console.log( a )
+
+// - Los datos de tipo "string" tambien poseen sus propios metodos "prototypes", algunos de estos son:
+
+// - toUpperCase: convierte todas las letras de una cadena "string" a mayusculas
+console.log( a.toUpperCase() )
+
+// - toLowerCase: convierte todas las letras de una cadena "string" a minusculas
+console.log( a.toLowerCase() )
+
+// - indexOf: sirve para obtener el primer indice del caracter o palabra especificada, al igual que los arrays, los indices de los datos de tipo "string" comienzan en cero y desde ahi empieza a contar, los espacios vacios tambien los cuenta como caracter
+
+console.log( "Obtener el indice de la letra '0' que se encuentra en la palabra Tulio Triviño:", a.indexOf("o") )
+console.log( "Obtener el indice de donde comienza la palabra 'Triviño' que se encuentra en la palabra Tulio Triviño:", a.indexOf("Triviño") )
+
+// - lastIndexOf: sirve para obtener el ultimo indice de un caracter o palabra, es util cuando hay letras repetidas y quieres obtener la ultima:
+
+console.log( "Obtener la ultima letra 'o' de la palabra Tulio Triviño:", a.lastIndexOf("o") )
+
+// - substring: extrae los caracteres de una cadena de texto, especificando como primer parametro el index de donde debe empezar a extraer, y como segundo parametro el index final de donde debe extraer, no extrae el caracter del indice final, si no se especifica el segundo parametro extraera toda la palabra desde el primer indice:
+
+console.log( "Extrae todos los caracteres desde la posicion 2 de la palabra Tulio Triviño:", a.substring(2))
+console.log( "Extrae todos los caracteres desde la posicion 2 hasta la posicion 6 de la palabra Tulio Triviño:", a.substring( 2, 8))
+console.log( "Extrae todos los caracteres desde la posicion 0 hasta el primer espacio de la palabra Tulio Triviño:", a.substring( 0, a.indexOf(" ")))
+
+// - Split: Este metodo sirve para dividir una cadena de texto (string) en un array, y podemos especificar el caracter que separara los elementos de la cadena especificandolo como parametro, si no se especifica, la cadena se convertira en un solo elemento del arreglo
+
+divided = a.split(" ")
+console.log( divided )
