@@ -1332,38 +1332,68 @@
 
 // - En Javascript tenemos el objeto "Date" el cual nos permite trabajar con fechas
 
-var hoy = new Date()
-console.log( "La fecha de este momento:", hoy )
+// var hoy = new Date()
+// console.log( "La fecha de este momento:", hoy )
 
-var fechaMilisegundos = new Date(0)
-console.log( "La fecha en milisegundos:", fechaMilisegundos )
+// var fechaMilisegundos = new Date(0)
+// console.log( "La fecha en milisegundos:", fechaMilisegundos )
 
 // - Date soporta los siguientes parametros en el siguiente orden: año, mes, dia, hora, min, seg, mili, y el mes comienza con base 0 como los arrays, por ejemplo uno podria pensar que Enero es 1, pero en realidad es 0
 
-var fechaFija = new Date( 2024, 1, 26, 19, 50, 15, 2  )
-console.log( "La fecha fija:", fechaFija )
+// var fechaFija = new Date( 2024, 1, 26, 19, 50, 15, 2  )
+// console.log( "La fecha fija:", fechaFija )
 
 // - Las fechas tambien tienen sus propios prototipos, a continuacion algunos:
 
 // - getFullYear: obtener el año
-console.log( "Obteniendo el año:", hoy.getFullYear() )
+// console.log( "Obteniendo el año:", hoy.getFullYear() )
 
 // - getDate: obtener el dia
-console.log( "Obteniendo el dia:", hoy.getDate() )
+// console.log( "Obteniendo el dia:", hoy.getDate() )
 
 // - getHours: obtener la hora
-console.log( "Obteniendo la hora:", hoy.getHours() )
+// console.log( "Obteniendo la hora:", hoy.getHours() )
 
 // - getMilliseconds: obtener los milisegundos
-console.log( "Obteniendo los milisegundos:", hoy.getMilliseconds() )
+// console.log( "Obteniendo los milisegundos:", hoy.getMilliseconds() )
 
 // - getMonth: obtener el mes
-console.log( "Obteniendo el mes:", hoy.getMonth() )
+// console.log( "Obteniendo el mes:", hoy.getMonth() )
 
 // - getSeconds: obtener los segundos
-console.log( "Obteniendo los segundos:", hoy.getSeconds() )
+// console.log( "Obteniendo los segundos:", hoy.getSeconds() )
 
 // - getTime: obtener una representacion numerica en milisegundos de una fecha
-console.log( "Obteniendo una representacion numerica en milisegundos de una fecha:", hoy.getTime() )
+// console.log( "Obteniendo una representacion numerica en milisegundos de una fecha:", hoy.getTime() )
 
+/*-- ----------------------------------------------------- --*/
+/*--                 Operaciones con fechas                --*/
+/*-- ----------------------------------------------------- --*/
 
+var fecha = new Date( 2024, 1, 26 )
+// console.log( fecha )
+
+// - setDate: para setear un dia, si es mayor a 31 empieza a contar los dias del mes siguiente
+
+// fecha.setDate( 32 )
+// console.log( fecha )
+
+// - Sumar dias usando el prototipo:
+
+Date.prototype.sumarDias = function( dias ){
+  this.setDate( this.getDate() + dias )
+  return this
+}
+
+// console.log( fecha )
+// console.log( fecha.sumarDias(5) )
+
+// - Sumar años usando el prototipo:
+
+Date.prototype.sumarAnios = function( anios ){
+  this.setFullYear( this.getFullYear() + anios )
+  return this
+}
+
+console.log( fecha )
+console.log( fecha.sumarAnios(5) )
