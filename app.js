@@ -1370,7 +1370,7 @@
 /*--                 Operaciones con fechas                --*/
 /*-- ----------------------------------------------------- --*/
 
-var fecha = new Date( 2024, 1, 26 )
+// var fecha = new Date( 2024, 1, 26 )
 // console.log( fecha )
 
 // - setDate: para setear un dia, si es mayor a 31 empieza a contar los dias del mes siguiente
@@ -1380,20 +1380,65 @@ var fecha = new Date( 2024, 1, 26 )
 
 // - Sumar dias usando el prototipo:
 
-Date.prototype.sumarDias = function( dias ){
-  this.setDate( this.getDate() + dias )
-  return this
-}
+// Date.prototype.sumarDias = function( dias ){
+//   this.setDate( this.getDate() + dias )
+//   return this
+// }
 
 // console.log( fecha )
 // console.log( fecha.sumarDias(5) )
 
 // - Sumar años usando el prototipo:
 
-Date.prototype.sumarAnios = function( anios ){
-  this.setFullYear( this.getFullYear() + anios )
-  return this
+// Date.prototype.sumarAnios = function( anios ){
+//   this.setFullYear( this.getFullYear() + anios )
+//   return this
+// }
+
+// console.log( fecha )
+// console.log( fecha.sumarAnios(5) )
+
+/*-- ----------------------------------------------------- --*/
+/*--                     Objeto Math                       --*/
+/*-- ----------------------------------------------------- --*/
+
+// - El objeto Math de JavaScript permite trabajar con metodos matematicos, podemos ver todos sus prototipos de la siguiente manera:
+
+console.log( window.Math )
+
+// - Obtener el valor constante de PI y de E (base de logaritmo natural)
+
+var PI = Math.PI
+var E  = Math.E
+
+console.log( "Valor de PI", PI )
+console.log( "Valor de E", E )
+
+// - Round: para redonder un numero usamos este metodo
+var num1 = 10.456789
+
+console.log( "Numero de ejemplo:", num1 )
+console.log( "Numero redondeado", Math.round( num1 ))
+
+// - Para obtener decimales con Round, hay que hacer un truco, multiplicar por la cantidad de decimales que se quiere obtener por ejemplo, para 2 decimales se debe multiplicar por 100 (cada cero representa un decimal), y ese resultado dividirlo por la misma cantidad multiplicada:
+console.log( "Numero redondeado con dos decimales", Math.round( num1 * 100 ) / 100 )
+
+// - Floor: quita todos los decimales de un numero sin redondear
+console.log( "Numero sin redondeo, ni decimal:", Math.floor( num1 ))
+
+// - Random: genera un numero aleatorio entre el 0 y 1
+var rnd = Math.random()
+console.log( "Numero aleatorio generado con random:", rnd )
+
+// - Creacion de una funcion que permita devolver numeros aleatorios entre un rango especificado por parametros:
+function randomEntre( min, max ) {
+  return Math.floor( Math.random() * ( max - min + 1 ) + min )
 }
 
-console.log( fecha )
-console.log( fecha.sumarAnios(5) )
+console.log( "Numero aleatorio entre 1 y 6", randomEntre( 1, 6 ) )
+
+// - Sqrt: obtener la raiz cuadrada:
+console.log( "Raiz cuadrada de 36:", Math.sqrt( 36 ) )
+
+// - Pow: obtener la base elevada al exponente:
+console.log( "Si tomo como base el 7 y lo elevo a 2 el resultado es:", Math.pow( 7, 2 ) )
