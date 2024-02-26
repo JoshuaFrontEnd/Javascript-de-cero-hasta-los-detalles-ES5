@@ -1124,35 +1124,107 @@
 // }
 
 // - Podria suceder que si creo un numero con el constructor Number, la funcion "determinarDato" no haga la validacion correctamente, o si?
-var b = new Number(3) // Esto es un numero, pero tambien es un objeto, de eso se trata el poliformismo
+// var b = new Number(3) // Esto es un numero, pero tambien es un objeto, de eso se trata el poliformismo
 
-console.log( b )
+// console.log( b )
 
 // - La idea es que independiente del tipo de dato la funcion pueda trabajar con ese valor, entonces lo que podemos hacer es que al detectar que es un objeto determinar su instancia, asi podemos obtener el comportamiento deseado, que "b" se comporte como numero y no como objeto:
-function determinaDato( a ) {
+// function determinaDato( a ) {
 
-  if ( a === undefined ) {
-    console.log("A es undefined... no se que hacer")
+//   if ( a === undefined ) {
+//     console.log("A es undefined... no se que hacer")
+//   }
+
+//   if ( typeof a === "number" ) {
+//     console.log( "A es un numero, y puedo hacer operaciones con numeros" )
+//   }
+
+//   if ( typeof a === "string" ) {
+//     console.log("A es un texto, y puedo hacer operaciones con texto" )
+//   }
+
+//   if ( typeof a === "object" ) {
+//     console.log("A es un objeto... pero puede ser cualquier cosa..." )
+
+//     if( a instanceof Number ) {
+//       console.log("A es un objeto numerico 😎");
+//     }
+
+//   }
+
+// }
+
+// determinaDato( b )
+
+/*-- ----------------------------------------------------- --*/
+/*--        Cuidado con las funciones y su contexto        --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript existen dos contextos (Scopes), el scope global, y el de bloque, el global es el Window y el de bloque es el de una funcion, esto significa que dependiendo del contexto, ese sera el alcance de una variable
+
+// - Teniendo una funcion que crea funciones y las retorna en un arreglo, seteamos una variable llamada "numero" y vamos sobre escribiendo su valor:
+
+// function crearFunciones() {
+
+//   var arr = []
+//   var numero = 1
+
+//   arr.push( function(){
+//     console.log( numero )
+//   })
+
+//   numero = 2
+
+//   arr.push( function(){
+//     console.log( numero )
+//   })
+
+//   numero = 3
+
+//   arr.push( function(){
+//     console.log( numero )
+//   })
+
+//   return arr
+
+// }
+
+// var funciones = crearFunciones()
+
+// - Uno tenderia a pensar que el resultado de estas llamadas seria: 1, 2, 3, pero en realidad será de: 3, 3, 3. Esto sucede por que la ultima varible sobre escribe el valor de las demás, independiente del orden en que fueron declaradas la ultima siempre sobre escribe
+// funciones[0]() // 3
+// funciones[1]() // 3
+// funciones[2]() // 3
+
+// - Entonces ¿De que manera podriamos obtener los distintos valores de "numero" sin que se sobreescriba?. Respuesta: Utilizando el contexto:
+
+function crearFunciones() {
+
+  var arr = []
+
+  for ( var numero = 1; numero <=3; numero++ ) {
+
+    arr.push(
+
+      // Al crear una funcion anonima que se autoejecuta estoy creando un nuevo contexto "scope", por lo tanto al pasar el valor de la variable "numero" este queda guardado dentro del nuevo contexto, donde no podra ser sobreescrita
+      (function(numero){
+
+        return function(){
+          console.log( numero )
+        }
+
+      })(numero)
+
+    )
+
   }
 
-  if ( typeof a === "number" ) {
-    console.log( "A es un numero, y puedo hacer operaciones con numeros" )
-  }
-
-  if ( typeof a === "string" ) {
-    console.log("A es un texto, y puedo hacer operaciones con texto" )
-  }
-
-  if ( typeof a === "object" ) {
-    console.log("A es un objeto... pero puede ser cualquier cosa..." )
-
-    if( a instanceof Number ) {
-      console.log("A es un objeto numerico 😎");
-    }
-
-  }
+  return arr
 
 }
 
-determinaDato( b )
+var funciones = crearFunciones()
 
+funciones[0]() // 1
+funciones[1]() // 2
+funciones[2]() // 3
