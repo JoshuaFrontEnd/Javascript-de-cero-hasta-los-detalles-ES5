@@ -1292,36 +1292,78 @@
 // - En otros lenguajes de programacion los datos de tipo "string" son arreglos de caracteres/texto, en cambio en Javascript son objetos:
 
 // - Podemos definir un dato de tipo "string" de las siguientes formas
-var a = new String("Tulio Triviño")
-var b = "Triviño"
+// var a = new String("Tulio Triviño")
+// var b = "Triviño"
 
 // - Al mostrar en consola podemos ver la palabra como objeto
-console.log( a )
+// console.log( a )
 
 // - Los datos de tipo "string" tambien poseen sus propios metodos "prototypes", algunos de estos son:
 
 // - toUpperCase: convierte todas las letras de una cadena "string" a mayusculas
-console.log( a.toUpperCase() )
+// console.log( a.toUpperCase() )
 
 // - toLowerCase: convierte todas las letras de una cadena "string" a minusculas
-console.log( a.toLowerCase() )
+// console.log( a.toLowerCase() )
 
 // - indexOf: sirve para obtener el primer indice del caracter o palabra especificada, al igual que los arrays, los indices de los datos de tipo "string" comienzan en cero y desde ahi empieza a contar, los espacios vacios tambien los cuenta como caracter
 
-console.log( "Obtener el indice de la letra '0' que se encuentra en la palabra Tulio Triviño:", a.indexOf("o") )
-console.log( "Obtener el indice de donde comienza la palabra 'Triviño' que se encuentra en la palabra Tulio Triviño:", a.indexOf("Triviño") )
+// console.log( "Obtener el indice de la letra '0' que se encuentra en la palabra Tulio Triviño:", a.indexOf("o") )
+// console.log( "Obtener el indice de donde comienza la palabra 'Triviño' que se encuentra en la palabra Tulio Triviño:", a.indexOf("Triviño") )
 
 // - lastIndexOf: sirve para obtener el ultimo indice de un caracter o palabra, es util cuando hay letras repetidas y quieres obtener la ultima:
 
-console.log( "Obtener la ultima letra 'o' de la palabra Tulio Triviño:", a.lastIndexOf("o") )
+// console.log( "Obtener la ultima letra 'o' de la palabra Tulio Triviño:", a.lastIndexOf("o") )
 
 // - substring: extrae los caracteres de una cadena de texto, especificando como primer parametro el index de donde debe empezar a extraer, y como segundo parametro el index final de donde debe extraer, no extrae el caracter del indice final, si no se especifica el segundo parametro extraera toda la palabra desde el primer indice:
 
-console.log( "Extrae todos los caracteres desde la posicion 2 de la palabra Tulio Triviño:", a.substring(2))
-console.log( "Extrae todos los caracteres desde la posicion 2 hasta la posicion 6 de la palabra Tulio Triviño:", a.substring( 2, 8))
-console.log( "Extrae todos los caracteres desde la posicion 0 hasta el primer espacio de la palabra Tulio Triviño:", a.substring( 0, a.indexOf(" ")))
+// console.log( "Extrae todos los caracteres desde la posicion 2 de la palabra Tulio Triviño:", a.substring(2))
+// console.log( "Extrae todos los caracteres desde la posicion 2 hasta la posicion 6 de la palabra Tulio Triviño:", a.substring( 2, 8))
+// console.log( "Extrae todos los caracteres desde la posicion 0 hasta el primer espacio de la palabra Tulio Triviño:", a.substring( 0, a.indexOf(" ")))
 
 // - Split: Este metodo sirve para dividir una cadena de texto (string) en un array, y podemos especificar el caracter que separara los elementos de la cadena especificandolo como parametro, si no se especifica, la cadena se convertira en un solo elemento del arreglo
 
-divided = a.split(" ")
-console.log( divided )
+// divided = a.split(" ")
+// console.log( divided )
+
+/*-- ----------------------------------------------------- --*/
+/*--                     Objeto Date                       --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript tenemos el objeto "Date" el cual nos permite trabajar con fechas
+
+var hoy = new Date()
+console.log( "La fecha de este momento:", hoy )
+
+var fechaMilisegundos = new Date(0)
+console.log( "La fecha en milisegundos:", fechaMilisegundos )
+
+// - Date soporta los siguientes parametros en el siguiente orden: año, mes, dia, hora, min, seg, mili, y el mes comienza con base 0 como los arrays, por ejemplo uno podria pensar que Enero es 1, pero en realidad es 0
+
+var fechaFija = new Date( 2024, 1, 26, 19, 50, 15, 2  )
+console.log( "La fecha fija:", fechaFija )
+
+// - Las fechas tambien tienen sus propios prototipos, a continuacion algunos:
+
+// - getFullYear: obtener el año
+console.log( "Obteniendo el año:", hoy.getFullYear() )
+
+// - getDate: obtener el dia
+console.log( "Obteniendo el dia:", hoy.getDate() )
+
+// - getHours: obtener la hora
+console.log( "Obteniendo la hora:", hoy.getHours() )
+
+// - getMilliseconds: obtener los milisegundos
+console.log( "Obteniendo los milisegundos:", hoy.getMilliseconds() )
+
+// - getMonth: obtener el mes
+console.log( "Obteniendo el mes:", hoy.getMonth() )
+
+// - getSeconds: obtener los segundos
+console.log( "Obteniendo los segundos:", hoy.getSeconds() )
+
+// - getTime: obtener una representacion numerica en milisegundos de una fecha
+console.log( "Obteniendo una representacion numerica en milisegundos de una fecha:", hoy.getTime() )
+
+
