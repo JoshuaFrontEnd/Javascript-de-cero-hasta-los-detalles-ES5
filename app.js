@@ -1404,41 +1404,152 @@
 
 // - El objeto Math de JavaScript permite trabajar con metodos matematicos, podemos ver todos sus prototipos de la siguiente manera:
 
-console.log( window.Math )
+// console.log( window.Math )
 
 // - Obtener el valor constante de PI y de E (base de logaritmo natural)
 
-var PI = Math.PI
-var E  = Math.E
+// var PI = Math.PI
+// var E  = Math.E
 
-console.log( "Valor de PI", PI )
-console.log( "Valor de E", E )
+// console.log( "Valor de PI", PI )
+// console.log( "Valor de E", E )
 
 // - Round: para redonder un numero usamos este metodo
-var num1 = 10.456789
+// var num1 = 10.456789
 
-console.log( "Numero de ejemplo:", num1 )
-console.log( "Numero redondeado", Math.round( num1 ))
+// console.log( "Numero de ejemplo:", num1 )
+// console.log( "Numero redondeado", Math.round( num1 ))
 
 // - Para obtener decimales con Round, hay que hacer un truco, multiplicar por la cantidad de decimales que se quiere obtener por ejemplo, para 2 decimales se debe multiplicar por 100 (cada cero representa un decimal), y ese resultado dividirlo por la misma cantidad multiplicada:
-console.log( "Numero redondeado con dos decimales", Math.round( num1 * 100 ) / 100 )
+// console.log( "Numero redondeado con dos decimales", Math.round( num1 * 100 ) / 100 )
 
 // - Floor: quita todos los decimales de un numero sin redondear
-console.log( "Numero sin redondeo, ni decimal:", Math.floor( num1 ))
+// console.log( "Numero sin redondeo, ni decimal:", Math.floor( num1 ))
 
 // - Random: genera un numero aleatorio entre el 0 y 1
-var rnd = Math.random()
-console.log( "Numero aleatorio generado con random:", rnd )
+// var rnd = Math.random()
+// console.log( "Numero aleatorio generado con random:", rnd )
 
 // - Creacion de una funcion que permita devolver numeros aleatorios entre un rango especificado por parametros:
-function randomEntre( min, max ) {
-  return Math.floor( Math.random() * ( max - min + 1 ) + min )
-}
+// function randomEntre( min, max ) {
+//   return Math.floor( Math.random() * ( max - min + 1 ) + min )
+// }
 
-console.log( "Numero aleatorio entre 1 y 6", randomEntre( 1, 6 ) )
+// console.log( "Numero aleatorio entre 1 y 6", randomEntre( 1, 6 ) )
 
 // - Sqrt: obtener la raiz cuadrada:
-console.log( "Raiz cuadrada de 36:", Math.sqrt( 36 ) )
+// console.log( "Raiz cuadrada de 36:", Math.sqrt( 36 ) )
 
 // - Pow: obtener la base elevada al exponente:
-console.log( "Si tomo como base el 7 y lo elevo a 2 el resultado es:", Math.pow( 7, 2 ) )
+// console.log( "Si tomo como base el 7 y lo elevo a 2 el resultado es:", Math.pow( 7, 2 ) )
+
+/*-- ----------------------------------------------------- --*/
+/*--                  Expresiones Regulares                --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Las expresiones regulares sirven para buscar informacion en una cadena de caracteres (string) predefiniendo la busqueda por un formato creado con la expresion
+
+// - Definir una expresion regular que busque el caracter "a"
+
+// - Definicion con el constructor:
+
+var reg1 = new RegExp("a")
+
+// - Definicion literal
+
+var reg2 = /a/
+
+var texto = "Hola Mundo, 12345"
+
+var textoMultilinea = "Hola Mundo.\nQué tal?"
+
+var letrasRepetidas = "Holaa Mundoo"
+
+// - Para buscar en un texto la expresion definida, usamos el metodo "match", si la expresion es correcta regresa un arreglo con el resultado de la expresion, el index de la palabra donde encontro la expresion, y el texto donde busco, de lo contrario retornara el valor "null"
+
+var arr = texto.match( reg1 )
+console.log( arr )
+
+// - Con el simbolo ^ especificamos que busque en la primera posicion la expresion
+
+console.log( "Busca en la primera posicion de la palabra " + texto + " la letra a:", texto.match( /^a/ ) )
+
+// - Con el simbolo $ especificamos que busque en la ultima posicion la expresion
+
+console.log( "Busca en la ultima posicion de la palabra " + texto + " la letra o:", texto.match( /o$/ ) )
+
+// - Con el simbolo . especificamos que queremos obtener cualquier caracter contando desde la primera posicion
+
+console.log( "Busca cualquier caracter de la palabra " + texto + " de izquierda a derecha", texto.match( /../ ) )
+
+// - Buscar en el primer caracter cualquier letra que venga seguida de una letra o
+
+console.log( "Buscar en el primer caracter de la palabra " + texto + " cualquier letra que venga seguida de una letra o", texto.match( /^.o/ ) )
+
+// - Con los simbolos [] podemos definir un rango, por ejemplo un rango numerico seria del 0 al 9 [0-9], es decir, que encuentre el primer numero que este dentro del rango
+
+console.log( "Buscar en la palabra " + texto + " el primer numero que este dentro del rango del 0 y 9:", texto.match( /[0-9]/ ) )
+
+// - Con la expresion de rango tambien podemos buscar letras, como observacion las expresiones son case sensitive por lo que al buscar la primera letra en la palabra 'Hola Mundo' que coincida con el rango [0-9], el resultado sera la letra o, ya que la H de 'Hola Mundo' se encuentra en mayusculas, y la expresion esta definida en minusculas
+
+console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z", texto.match( /[a-z]/ ) )
+
+// - Para buscar la letra minuscula y la mayuscula puedo definir asi:
+
+console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z, o A y Z", texto.match( /[a-zA-Z]/ ) )
+
+// - Buscar cualquier letra entre la a y z, pero la palabra debe comenzar con H
+
+console.log( "Buscar en la palabra " + texto + " cualquier letra entre la a y z, pero la primera letra de la palabra debe comenzar con H", texto.match( /^H[a-z]/ ) )
+
+// - Buscar cualquier vocal
+
+console.log( "Buscar en la palabra " + texto + " la primera vocal", texto.match( /[aeiou]/ ) )
+
+// - Buscar la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena
+
+console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena", texto.match( /[aeiou].$/ ) )
+
+// - Buscar la primera vocal, seguida de cualquier caracter
+
+console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter", texto.match( /[aeiou]./ ) )
+
+// - Buscar la primera separacion (espacio) que haya en la cadena
+
+console.log( "Buscar en la palabra " + texto + " cualquier separacion", texto.match( /\s/ ) )
+
+// - Podemos usar esta busqueda: [a-zA-Z0-9] de manera abreviada con /\w/ (viene de "word"), no funciona con la letra ñ
+
+console.log( "Buscar en la palabra " + texto + ", el primer caracter, letra minuscula, o mayuscula, o numero", texto.match( /\w/ ) )
+
+// .- Para abreviar esta busqueda [0-9], podemos usar /\d/ (viene de "decimo")
+
+console.log( "Buscar en la palabra " + texto + ", el primer numero", texto.match( /\d/ ) )
+
+// - Tambien existen 3 controladores que se declaran al final de la expresion para formatear la busqueda de manera mas especifica:
+
+// - i = insensible, elimina el case sensitive
+// - g = todas las ocurrencias
+// - m = multilinea
+
+// - Encuentra la primera letra m independiente de si es mayusucula o minuscula
+
+console.log( "Buscar en la palabra " + texto + ", la primera letra m, independiente de si es minuscula o mayuscula", texto.match( /\m/i ) )
+
+// - Obtener todas la vocales que se encuentran en una palabra
+
+console.log( "Buscar en la palabra " + texto + ", todas las vocales", texto.match( /[aeiou]/g ) )
+
+// - Obtener todos los caracteres especiales independiente de si es mayuscula o minuscula
+
+console.log( "Buscar en la frase " + textoMultilinea + " , todos los caracteres especiales, independiente de si es minuscula o mayuscula", textoMultilinea.match( /[áéíóúñ]/ig ) )
+
+// - Usando un repetidor podemos obtener los resultados que se repiten de manera continua:
+
+console.log( "Buscar en la palabra " + letrasRepetidas + ", la vocal o minuscula que se repite al menos una vez", letrasRepetidas.match( /o+/g ) )
+
+// - Definir que algo aparezca n veces
+
+console.log( "Buscar en la palabra " + letrasRepetidas + ", la primera vocal o minuscula que se repite dos veces", letrasRepetidas.match( /o{2}/ ) )
+
+
