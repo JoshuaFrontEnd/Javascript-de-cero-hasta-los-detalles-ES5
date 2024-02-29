@@ -1444,7 +1444,7 @@
 // console.log( "Si tomo como base el 7 y lo elevo a 2 el resultado es:", Math.pow( 7, 2 ) )
 
 /*-- ----------------------------------------------------- --*/
-/*--                  Expresiones Regulares                --*/
+/*--          Expresiones Regulares: Definiciones          --*/
 /*-- ----------------------------------------------------- --*/
 
 // - Las expresiones regulares sirven para buscar informacion en una cadena de caracteres (string) predefiniendo la busqueda por un formato creado con la expresion
@@ -1453,103 +1453,134 @@
 
 // - Definicion con el constructor:
 
-var reg1 = new RegExp("a")
+// var reg1 = new RegExp("a")
 
-// - Definicion literal
+// // - Definicion literal
 
-var reg2 = /a/
+// var reg2 = /a/
 
-var texto = "Hola Mundo, 12345"
+// var texto = "Hola Mundo, 12345"
 
-var textoMultilinea = "Hola Mundo.\nQué tal?"
+// var textoMultilinea = "Hola Mundo.\nQué tal?"
 
-var letrasRepetidas = "Holaa Mundoo"
+// var letrasRepetidas = "Holaa Mundoo"
 
-// - Para buscar en un texto la expresion definida, usamos el metodo "match", si la expresion es correcta regresa un arreglo con el resultado de la expresion, el index de la palabra donde encontro la expresion, y el texto donde busco, de lo contrario retornara el valor "null"
+// // - Para buscar en un texto la expresion definida, usamos el metodo "match", si la expresion es correcta regresa un arreglo con el resultado de la expresion, el index de la palabra donde encontro la expresion, y el texto donde busco, de lo contrario retornara el valor "null"
 
-var arr = texto.match( reg1 )
-console.log( arr )
+// var arr = texto.match( reg1 )
+// console.log( arr )
 
-// - Con el simbolo ^ especificamos que busque en la primera posicion la expresion
+// // - Con el simbolo ^ especificamos que busque en la primera posicion la expresion
 
-console.log( "Busca en la primera posicion de la palabra " + texto + " la letra a:", texto.match( /^a/ ) )
+// console.log( "Busca en la primera posicion de la palabra " + texto + " la letra a:", texto.match( /^a/ ) )
 
-// - Con el simbolo $ especificamos que busque en la ultima posicion la expresion
+// // - Con el simbolo $ especificamos que busque en la ultima posicion la expresion
 
-console.log( "Busca en la ultima posicion de la palabra " + texto + " la letra o:", texto.match( /o$/ ) )
+// console.log( "Busca en la ultima posicion de la palabra " + texto + " la letra o:", texto.match( /o$/ ) )
 
-// - Con el simbolo . especificamos que queremos obtener cualquier caracter contando desde la primera posicion
+// // - Con el simbolo . especificamos que queremos obtener cualquier caracter contando desde la primera posicion
 
-console.log( "Busca cualquier caracter de la palabra " + texto + " de izquierda a derecha", texto.match( /../ ) )
+// console.log( "Busca cualquier caracter de la palabra " + texto + " de izquierda a derecha", texto.match( /../ ) )
 
-// - Buscar en el primer caracter cualquier letra que venga seguida de una letra o
+// // - Buscar en el primer caracter cualquier letra que venga seguida de una letra o
 
-console.log( "Buscar en el primer caracter de la palabra " + texto + " cualquier letra que venga seguida de una letra o", texto.match( /^.o/ ) )
+// console.log( "Buscar en el primer caracter de la palabra " + texto + " cualquier letra que venga seguida de una letra o", texto.match( /^.o/ ) )
 
-// - Con los simbolos [] podemos definir un rango, por ejemplo un rango numerico seria del 0 al 9 [0-9], es decir, que encuentre el primer numero que este dentro del rango
+// // - Con los simbolos [] podemos definir un rango, por ejemplo un rango numerico seria del 0 al 9 [0-9], es decir, que encuentre el primer numero que este dentro del rango
 
-console.log( "Buscar en la palabra " + texto + " el primer numero que este dentro del rango del 0 y 9:", texto.match( /[0-9]/ ) )
+// console.log( "Buscar en la palabra " + texto + " el primer numero que este dentro del rango del 0 y 9:", texto.match( /[0-9]/ ) )
 
-// - Con la expresion de rango tambien podemos buscar letras, como observacion las expresiones son case sensitive por lo que al buscar la primera letra en la palabra 'Hola Mundo' que coincida con el rango [0-9], el resultado sera la letra o, ya que la H de 'Hola Mundo' se encuentra en mayusculas, y la expresion esta definida en minusculas
+// // - Con la expresion de rango tambien podemos buscar letras, como observacion las expresiones son case sensitive por lo que al buscar la primera letra en la palabra 'Hola Mundo' que coincida con el rango [0-9], el resultado sera la letra o, ya que la H de 'Hola Mundo' se encuentra en mayusculas, y la expresion esta definida en minusculas
 
-console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z", texto.match( /[a-z]/ ) )
+// console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z", texto.match( /[a-z]/ ) )
 
-// - Para buscar la letra minuscula y la mayuscula puedo definir asi:
+// // - Para buscar la letra minuscula y la mayuscula puedo definir asi:
 
-console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z, o A y Z", texto.match( /[a-zA-Z]/ ) )
+// console.log( "Encontrar la primera letra en la palabra " + texto + " que coincida entre a y z, o A y Z", texto.match( /[a-zA-Z]/ ) )
 
-// - Buscar cualquier letra entre la a y z, pero la palabra debe comenzar con H
+// // - Buscar cualquier letra entre la a y z, pero la palabra debe comenzar con H
 
-console.log( "Buscar en la palabra " + texto + " cualquier letra entre la a y z, pero la primera letra de la palabra debe comenzar con H", texto.match( /^H[a-z]/ ) )
+// console.log( "Buscar en la palabra " + texto + " cualquier letra entre la a y z, pero la primera letra de la palabra debe comenzar con H", texto.match( /^H[a-z]/ ) )
 
-// - Buscar cualquier vocal
+// // - Buscar cualquier vocal
 
-console.log( "Buscar en la palabra " + texto + " la primera vocal", texto.match( /[aeiou]/ ) )
+// console.log( "Buscar en la palabra " + texto + " la primera vocal", texto.match( /[aeiou]/ ) )
 
-// - Buscar la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena
+// // - Buscar la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena
 
-console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena", texto.match( /[aeiou].$/ ) )
+// console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter, pero desde el final de la cadena", texto.match( /[aeiou].$/ ) )
 
-// - Buscar la primera vocal, seguida de cualquier caracter
+// // - Buscar la primera vocal, seguida de cualquier caracter
 
-console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter", texto.match( /[aeiou]./ ) )
+// console.log( "Buscar en la palabra " + texto + " la primera vocal, seguida de cualquier caracter", texto.match( /[aeiou]./ ) )
 
-// - Buscar la primera separacion (espacio) que haya en la cadena
+// // - Buscar la primera separacion (espacio) que haya en la cadena
 
-console.log( "Buscar en la palabra " + texto + " cualquier separacion", texto.match( /\s/ ) )
+// console.log( "Buscar en la palabra " + texto + " cualquier separacion", texto.match( /\s/ ) )
 
-// - Podemos usar esta busqueda: [a-zA-Z0-9] de manera abreviada con /\w/ (viene de "word"), no funciona con la letra ñ
+// // - Podemos usar esta busqueda: [a-zA-Z0-9] de manera abreviada con /\w/ (viene de "word"), no funciona con la letra ñ
 
-console.log( "Buscar en la palabra " + texto + ", el primer caracter, letra minuscula, o mayuscula, o numero", texto.match( /\w/ ) )
+// console.log( "Buscar en la palabra " + texto + ", el primer caracter, letra minuscula, o mayuscula, o numero", texto.match( /\w/ ) )
 
-// .- Para abreviar esta busqueda [0-9], podemos usar /\d/ (viene de "decimo")
+// // .- Para abreviar esta busqueda [0-9], podemos usar /\d/ (viene de "decimo")
 
-console.log( "Buscar en la palabra " + texto + ", el primer numero", texto.match( /\d/ ) )
+// console.log( "Buscar en la palabra " + texto + ", el primer numero", texto.match( /\d/ ) )
 
-// - Tambien existen 3 controladores que se declaran al final de la expresion para formatear la busqueda de manera mas especifica:
+// // - Tambien existen 3 controladores que se declaran al final de la expresion para formatear la busqueda de manera mas especifica:
 
-// - i = insensible, elimina el case sensitive
-// - g = todas las ocurrencias
-// - m = multilinea
+// // - i = insensible, elimina el case sensitive
+// // - g = todas las ocurrencias
+// // - m = multilinea
 
-// - Encuentra la primera letra m independiente de si es mayusucula o minuscula
+// // - Encuentra la primera letra m independiente de si es mayusucula o minuscula
 
-console.log( "Buscar en la palabra " + texto + ", la primera letra m, independiente de si es minuscula o mayuscula", texto.match( /\m/i ) )
+// console.log( "Buscar en la palabra " + texto + ", la primera letra m, independiente de si es minuscula o mayuscula", texto.match( /\m/i ) )
 
-// - Obtener todas la vocales que se encuentran en una palabra
+// // - Obtener todas la vocales que se encuentran en una palabra
 
-console.log( "Buscar en la palabra " + texto + ", todas las vocales", texto.match( /[aeiou]/g ) )
+// console.log( "Buscar en la palabra " + texto + ", todas las vocales", texto.match( /[aeiou]/g ) )
 
-// - Obtener todos los caracteres especiales independiente de si es mayuscula o minuscula
+// // - Obtener todos los caracteres especiales independiente de si es mayuscula o minuscula
 
-console.log( "Buscar en la frase " + textoMultilinea + " , todos los caracteres especiales, independiente de si es minuscula o mayuscula", textoMultilinea.match( /[áéíóúñ]/ig ) )
+// console.log( "Buscar en la frase " + textoMultilinea + " , todos los caracteres especiales, independiente de si es minuscula o mayuscula", textoMultilinea.match( /[áéíóúñ]/ig ) )
 
-// - Usando un repetidor podemos obtener los resultados que se repiten de manera continua:
+// // - Usando un repetidor podemos obtener los resultados que se repiten de manera continua:
 
-console.log( "Buscar en la palabra " + letrasRepetidas + ", la vocal o minuscula que se repite al menos una vez", letrasRepetidas.match( /o+/g ) )
+// console.log( "Buscar en la palabra " + letrasRepetidas + ", la vocal o minuscula que se repite al menos una vez", letrasRepetidas.match( /o+/g ) )
 
-// - Definir que algo aparezca n veces
+// // - Definir que algo aparezca n veces
 
-console.log( "Buscar en la palabra " + letrasRepetidas + ", la primera vocal o minuscula que se repite dos veces", letrasRepetidas.match( /o{2}/ ) )
+// console.log( "Buscar en la palabra " + letrasRepetidas + ", la primera vocal o minuscula que se repite dos veces", letrasRepetidas.match( /o{2}/ ) )
 
+/*-- ----------------------------------------------------- --*/
+/*--         Expresiones Regulares: Casos de uso           --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Buscar los diptongos de la palabra "aeropuerto"
+
+var texto = "Aeropuerto"
+
+var arr = texto.match( /[aeiou]{2,2}/ig )
+
+console.log( "Los diptongos de la palabra " + texto + " son: " + arr )
+
+// - Cualquier letra en grupos de dos
+
+var arr = texto.match( /\w{2,2}/ig )
+
+console.log( "Separando las letras de la palabra " + texto + " en grupos de dos: " + arr )
+
+// - Obtener solo los numeros de una oracion:
+
+var oracionConNumeros = "La respuesta de la suma es: 45 + 60 = 105"
+
+var oCnArr = oracionConNumeros.match( /\d{1,}/g )
+
+console.log( "Los numeros de la siguiente oracion: '" + oracionConNumeros + "' son: " + oCnArr )
+
+// - Obtener los numeros de una oracion mas una palabra especifica:
+
+var oCnArrWord = oracionConNumeros.match( /\d{1,}|respuesta/ig )
+
+console.log( "Extraer de la siguiente oracion: '" + oracionConNumeros + "' todos los numeros mas la palabra 'respuesta': " + oCnArrWord )
 
