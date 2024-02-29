@@ -1558,29 +1558,116 @@
 
 // - Buscar los diptongos de la palabra "aeropuerto"
 
-var texto = "Aeropuerto"
+// var texto = "Aeropuerto"
 
-var arr = texto.match( /[aeiou]{2,2}/ig )
+// var arr = texto.match( /[aeiou]{2,2}/ig )
 
-console.log( "Los diptongos de la palabra " + texto + " son: " + arr )
+// console.log( "Los diptongos de la palabra " + texto + " son: " + arr )
 
 // - Cualquier letra en grupos de dos
 
-var arr = texto.match( /\w{2,2}/ig )
+// var arr = texto.match( /\w{2,2}/ig )
 
-console.log( "Separando las letras de la palabra " + texto + " en grupos de dos: " + arr )
+// console.log( "Separando las letras de la palabra " + texto + " en grupos de dos: " + arr )
 
 // - Obtener solo los numeros de una oracion:
 
-var oracionConNumeros = "La respuesta de la suma es: 45 + 60 = 105"
+// var oracionConNumeros = "La respuesta de la suma es: 45 + 60 = 105"
 
-var oCnArr = oracionConNumeros.match( /\d{1,}/g )
+// var oCnArr = oracionConNumeros.match( /\d{1,}/g )
 
-console.log( "Los numeros de la siguiente oracion: '" + oracionConNumeros + "' son: " + oCnArr )
+// console.log( "Los numeros de la siguiente oracion: '" + oracionConNumeros + "' son: " + oCnArr )
 
 // - Obtener los numeros de una oracion mas una palabra especifica:
 
-var oCnArrWord = oracionConNumeros.match( /\d{1,}|respuesta/ig )
+// var oCnArrWord = oracionConNumeros.match( /\d{1,}|respuesta/ig )
 
-console.log( "Extraer de la siguiente oracion: '" + oracionConNumeros + "' todos los numeros mas la palabra 'respuesta': " + oCnArrWord )
+// console.log( "Extraer de la siguiente oracion: '" + oracionConNumeros + "' todos los numeros mas la palabra 'respuesta': " + oCnArrWord )
 
+/* -------------------------------------------------------------------------
+  Sección 4: Interpretacion, palabras reservadas, decisiones, escape y cookies
+------------------------------------------------------------------------- */
+
+/*-- ----------------------------------------------------- --*/
+/*--           Manejo de errores con Try/Catch             --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript podemos usar la declaracion Try/Catch para manejar errores
+
+// - Javascript intentara ejecutar todo lo que se encuentra en el "try", no trabaja solo, luego de esta sentencia debe declararse la sentencia "catch" y/o "finally" o si no se ejecutara un error
+// try {
+
+  // - Una forma de forzar la ejecucion del "catch" es ejecutando la sentencia "throw"
+  // throw 'nuevo error para el catch'
+
+
+  // Si aparece un error en el "try" se ejecutara el "catch", que recibe el error como argumento, es opcional, pero si no se declara debe declararse la sentencia "finally"
+// } catch (error) {
+
+  // console.log("Error de catch: ", error )
+
+  // "Finally" ejecutara todo lo que se encuentre en su "scope" independiente de lo que haya hecho "try" y "catch", es opcional, pero si no se declara la sentencia "catch" debe declararse de forma obligatoria, o si no el "try" ejecutara un error
+// } finally {
+
+  // console.log("Finalmente");
+
+// }
+
+// - Otra forma de declarar un "throw" es con el constructor "Error"
+
+// try {
+
+//   // - Cuando declaramos un "throw" es como ejecutar un "return" todo lo que se haya declarado despues no será ejecutado
+//   throw new Error('Error: tipo 1')
+
+//   console.log('Esto nunca se va a ejecutar');
+
+// } catch (error) {
+
+//   // "throw" normal
+//   console.log( error );
+
+//   // - Podemos obtener una descripción del error, usando la propiedad "message", del prototipo del objeto "Error"
+//   console.log( error.message );
+
+// }
+
+// - Podemos enviar como parametro cualquier cosa en el "throw"
+
+// try {
+
+//   // - Enviando un objeto
+//   throw {
+//     nombreError: "Error tipo 1",
+//     accion: "Salir corriendo a hecharle agua al servidor",
+//     codeError: 1
+//   }
+
+// } catch (error) {
+
+//   console.log( error )
+//   console.log( error.nombreError )
+//   console.log( error.accion )
+//   console.log( error.codeError )
+
+// }
+
+// - Funcion que registra un error con la hora en la cual se ejecuto:
+
+try {
+
+  throw new Error('Error espacial, estan invadiendo la tierra')
+
+} catch ( error ) {
+
+  registroError( error )
+
+}
+
+function registroError( error ) {
+
+  var ahora = new Date()
+
+  console.log('Se registro un error: ', error.message, "a las: ", ahora )
+
+}
