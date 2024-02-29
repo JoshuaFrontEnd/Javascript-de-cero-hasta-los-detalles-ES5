@@ -1673,3 +1673,83 @@
 // }
 
 // Ahora viene una parte enfocada a las "Cookies", para poder trabajar con ellas instalar: https://www.npmjs.com/package/http-server
+
+/*-- ----------------------------------------------------- --*/
+/*--                Escape, unescape y cookies             --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Las cookies es informacion que uno puede guardar en el computador desde el navegador, como por ejemplo: saber que idioma selecciono el usuario, o el nombre de usuario, cosas generales que no sean sensibles para darle funcionamiento a una pagina, por ejemplo una contraseña no debe guardarse en una cookie ya que es informacion sensible guardada en un medio de muy facil acceso
+
+// - Las cookies sobreviven el reinicio del navegador y pueden ser programadas para que expiren
+
+// - Para crear una cookie con Javascript podemos hacerlo de la siguiente manera:
+
+// document.cookie = "nombre=Policarpo"
+// document.cookie = "apellido=Avendaño"
+
+// - Funcion que crea cookies:
+
+function crearCookie( nombre, valor ){
+
+  // "Escape" es una funcion en Javascript que convierte los caracteres especiales a una secuencia hexadecimal legible, esto lo hace para evitar problemas con los caracteres especiales, esta deprecada
+  valor = escape( valor )
+
+  // Seteando una fecha de expiracion
+  var hoy = new Date()
+
+  // A partir de hoy que dure 30 dias
+  hoy.setMonth( hoy.getMonth() + 1 )
+
+  // Con el parametro "expires" seteamos la fecha de expiracion
+  document.cookie = nombre+"="+valor+";expires=" + hoy.toUTCString()+";"
+
+}
+
+// crearCookie( "nombre", "Policarpo" )
+// crearCookie( "correo", "policarpo@correo.com" )
+// crearCookie( "direccion", "Titirilquen, Chile" )
+
+// - Para leer una cookie:
+
+// var cookies = document.cookie
+// console.log( cookies )
+
+// - Funcion para borrar una cookie:
+
+// function borrarCookie( nombre ){
+
+//   var hoy = new Date()
+//   hoy.setMonth( hoy.getMonth() - 1 )
+
+//   document.cookie = nombre+"=x;expires=" + hoy.toUTCString()+";"
+
+// }
+
+// borrarCookie( "nombre" )
+
+// - Funcion para obtener cookies especificas
+
+function getCookie( nombre ){
+
+  var cookies = document.cookie
+
+  // Separar la cadena de caracteres con las cookies por espacio y generar un arreglo:
+  var cookieArr = cookies.split("; ")
+
+  for( var i=0; i<cookieArr.length; i++ ){
+
+    var parArr = cookieArr[i].split("=")
+    cookieArr[i] = parArr
+
+    if( parArr[0] === nombre ){
+      return unescape( parArr[1] )
+    }
+
+  }
+
+  // Este "return" es en caso de que no exista la cookie consultada
+  return undefined
+
+}
+
+console.log( getCookie( "direccion" ) )
