@@ -1654,20 +1654,22 @@
 
 // - Funcion que registra un error con la hora en la cual se ejecuto:
 
-try {
+// try {
 
-  throw new Error('Error espacial, estan invadiendo la tierra')
+//   throw new Error('Error espacial, estan invadiendo la tierra')
 
-} catch ( error ) {
+// } catch ( error ) {
 
-  registroError( error )
+//   registroError( error )
 
-}
+// }
 
-function registroError( error ) {
+// function registroError( error ) {
 
-  var ahora = new Date()
+//   var ahora = new Date()
 
-  console.log('Se registro un error: ', error.message, "a las: ", ahora )
+//   console.log('Se registro un error: ', error.message, "a las: ", ahora )
 
-}
+// }
+
+// Ahora viene una parte enfocada a las "Cookies", para poder trabajar con ellas instalar: https://www.npmjs.com/package/http-server
