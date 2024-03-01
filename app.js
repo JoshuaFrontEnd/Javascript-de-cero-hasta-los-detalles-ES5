@@ -1965,7 +1965,7 @@
 
 
 /*-- ----------------------------------------------------- --*/
-/*--                 Ciclo For y For in                --*/
+/*--                 Ciclo For y For in                    --*/
 /*-- ----------------------------------------------------- --*/
 
 // - El ciclo for opera pasando como argumento primero una variable del numero desde donde comenzara la iteracion, luego viene la condicion y como tercer argumento el contador
@@ -1989,28 +1989,54 @@
 
 // - Defino un constructor de objetos de tipo Persona
 
-var Persona = function(){
-  this.nombre = "Tulio"
-  this.apellido = "Triviño"
-  this.edad = 30
-}
+// var Persona = function(){
+//   this.nombre = "Tulio"
+//   this.apellido = "Triviño"
+//   this.edad = 30
+// }
 
 // - A partir del constructor creado defino un objeto de tipo Persona
 
-var juan = new Persona()
+// var juan = new Persona()
 
 // - Si agregamos una propiedad al constructor de tipo Persona desde un "prototype" tambien podra verse reflejado en el objeto juan
 
-Persona.prototype.direccion = "Titirilquen"
+// Persona.prototype.direccion = "Titirilquen"
 
 // - Puedo acceder a las propiedades del objeto Juan usando un ciclo For In
 
-for ( prop in juan ) {
+// for ( prop in juan ) {
 
-  //- Metodo para mostrar solo las propiedades del objeto que fueron creadas en el constructor, si se quieren visualizar solo las que fueron creadas con prototipos sacar el "!" del if
-  if ( !juan.hasOwnProperty( prop ) )
-    continue
+//   //- Metodo para mostrar solo las propiedades del objeto que fueron creadas en el constructor, si se quieren visualizar solo las que fueron creadas con prototipos sacar el "!" del if
+//   if ( !juan.hasOwnProperty( prop ) )
+//     continue
 
-  console.log( prop,":", juan[prop] )
+//   console.log( prop,":", juan[prop] )
+
+// }
+
+/*-- ----------------------------------------------------- --*/
+/*--              Rotulado de ciclos: labeled              --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript podemos "Rotular" los ciclos , para obtener una referencia la cual podemos referenciar mediante un "break" o "continue" desde otro ciclo
+
+for_principal: for (let i = 0; i <= 5; i++) {
+
+  console.log( "i", i )
+
+  for_secundario: for (let j = 0; j <= 5; j++) {
+
+    console.log( "j", j )
+
+    for (let x = 0; x <= 5; x++) {
+
+      console.log( "x", x )
+
+      break for_principal
+
+    }
+
+  }
 
 }
