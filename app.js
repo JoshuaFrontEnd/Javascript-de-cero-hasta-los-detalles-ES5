@@ -1901,23 +1901,64 @@
 
 // - En javascript podemos convertir objetos a formato JSON y viceversa
 
-var objetoJS = {
-  nombre: "Tulio",
-  edad: "30",
-  imprimir: function(){
-    console.log( this.nombre, this.edad )
-  }
-}
+// var objetoJS = {
+//   nombre: "Tulio",
+//   edad: "30",
+//   imprimir: function(){
+//     console.log( this.nombre, this.edad )
+//   }
+// }
 
-console.log( "Objeto literal", objetoJS )
+// console.log( "Objeto literal", objetoJS )
 
 // - Podemos convertir un objeto a JSON usando el metodo JSON.stringify, cuando se hace esta conversion, se ignoran los metodos del objeto, para conservar los metodos, es mejor asignarlos a un prototipo
 
-var jsonString = JSON.stringify( objetoJS )
+// var jsonString = JSON.stringify( objetoJS )
 
-console.log( "Objeto literal convertido a JSON:", jsonString )
+// console.log( "Objeto literal convertido a JSON:", jsonString )
 
-// - Podemos convertir un JSON a objeto con el metodo JSON.parse
-var objetoDesdeJson = JSON.parse( jsonString )
+// // - Podemos convertir un JSON a objeto con el metodo JSON.parse
+// var objetoDesdeJson = JSON.parse( jsonString )
 
-console.log( "JSON convertido a objeto literal:", objetoDesdeJson )
+// console.log( "JSON convertido a objeto literal:", objetoDesdeJson )
+
+/* -------------------------------------------------------------------------
+  Sección 5: Ciclos en Javascript: Loops
+------------------------------------------------------------------------- */
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Ciclo While y Do While                --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Los ciclos nos ayudan a repetir lineas de codigo
+
+var i = 0
+
+// // - While: ejecutara el codigo y se repetira siempre y cuando se cumpla la condicion
+
+// while ( i < 10 ) {
+
+//   i++
+
+//   // La palabra "break" sirve para forzar el termino del ciclo
+//   // if( i === 5) {
+//   //   break
+//   // }
+
+//   // La palabra "continue" sirve para saltarse lo que venga a continuacion ( por ejemplo con "continue" no se ejecutara el console.log ) y continuara con el ciclo
+//   // if( i === 5) {
+//   //   continue
+//   // }
+
+//   console.log( i )
+
+// }
+
+// Do While: ejecuta el ciclo al menos una vez y despues de eso siempre y cuando se cumpla la condicion se volvera a ejecutar
+do {
+
+  i++
+
+  console.log( i )
+
+} while ( i < 10 )
