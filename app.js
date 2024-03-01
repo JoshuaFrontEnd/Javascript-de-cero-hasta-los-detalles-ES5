@@ -2075,25 +2075,66 @@
 
 // - Cuando utilizamos setTimeout dentro de un metodo de un objeto debemos tener cuidado con hacer referencia a "this", "this" adentro del setTimeout apunta al objeto global, si queremos que apunte al objeto del metodo debemos pasar el valor de "this" por variable:
 
-var titere = {
-  nombre: "Policarpo",
-  edad: 50,
-  imprimir: function(){
+// var titere = {
+//   nombre: "Policarpo",
+//   edad: 50,
+//   imprimir: function(){
 
-    // Asiganamos el valor de "this" del objeto "titere" a una variable para poder usarlo en el setTimeout
-    var self = this
+//     // Asiganamos el valor de "this" del objeto "titere" a una variable para poder usarlo en el setTimeout
+//     var self = this
 
-    setTimeout(function(){
+//     setTimeout(function(){
 
-      console.log( "Acá 'this' apunta a:'", this )
-      console.log( "Pero la variable 'self' apunta a:'", self )
-      console.log( "Por lo tanto con 'self' podemos especificar que:", self.nombre, self.edad )
+//       console.log( "Acá 'this' apunta a:'", this )
+//       console.log( "Pero la variable 'self' apunta a:'", self )
+//       console.log( "Por lo tanto con 'self' podemos especificar que:", self.nombre, self.edad )
 
-    }, 1000)
+//     }, 1000)
 
 
-  }
+//   }
+// }
+
+// titere.imprimir()
+
+/* -------------------------------------------------------------------------
+  Sección 6: Eventos
+------------------------------------------------------------------------- */
+
+/*-- ----------------------------------------------------- --*/
+/*--                       Eventos                         --*/
+/*-- ----------------------------------------------------- --*/
+
+// - Los eventos del navegador son acciones que pueden ejecutar codigo, Javascript puede capturar estos eventos y asignar diferentes funcionalidades
+
+// - Podemos asignar diferentes eventos directamente a elementos HTML
+
+// var input = document.createElement( "input" )
+
+// input.type = "button"
+// input.value = "Evento click"
+
+// // Acá asigno el evento
+// input.onclick = evento
+
+// document.body.appendChild( input )
+
+function evento( e ) {
+  console.log( "soy el evento click" )
+
+  // - Todos los eventos tienen un objeto, aca uso un console.log para visualizarlo
+  console.log( e )
 }
 
-titere.imprimir()
+// - El codigo de arriba corresponde a crear este elemento en HTML:
+// <input type="button" value="Evento click" onclick="evento()" >
 
+// - Tambien podemos asignar eventos haciendo referencia a un elemento HTML
+
+var botonClick = document.getElementById("botonClick")
+
+botonClick.addEventListener("click", evento )
+
+// - Para simular la llamada de un evento podemos lanzarlo mediante la notacion de punto al elemento que lo dispara
+
+// botonClick.click()
