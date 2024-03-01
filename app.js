@@ -1932,7 +1932,7 @@
 
 // - Los ciclos nos ayudan a repetir lineas de codigo
 
-var i = 0
+// var i = 0
 
 // // - While: ejecutara el codigo y se repetira siempre y cuando se cumpla la condicion
 
@@ -1955,10 +1955,62 @@ var i = 0
 // }
 
 // Do While: ejecuta el ciclo al menos una vez y despues de eso siempre y cuando se cumpla la condicion se volvera a ejecutar
-do {
+// do {
 
-  i++
+//   i++
 
-  console.log( i )
+//   console.log( i )
 
-} while ( i < 10 )
+// } while ( i < 10 )
+
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Ciclo For y For in                --*/
+/*-- ----------------------------------------------------- --*/
+
+// - El ciclo for opera pasando como argumento primero una variable del numero desde donde comenzara la iteracion, luego viene la condicion y como tercer argumento el contador
+
+// - Podemos sumar de 2 en 2 usando "i+=2", de 3 en 3 usando "i+=3", etc
+
+// - Se pueden hacer ciclos dentro de ciclos, es decir: podemos declarar un ciclo For, dentro de otro ciclo For
+
+// for ( var i = 0; i <= 10; i++ ) {
+
+//   // - Al haberse declarado un "continue" el console.log no mostrara el numero 5
+//   if( i == 5 ) {
+//     continue
+//   }
+
+//   console.log( i )
+
+// }
+
+// - Existe tambien el ciclo For in, que es muy utilizado para "barrer" las propiedades de los objetos
+
+// - Defino un constructor de objetos de tipo Persona
+
+var Persona = function(){
+  this.nombre = "Tulio"
+  this.apellido = "Triviño"
+  this.edad = 30
+}
+
+// - A partir del constructor creado defino un objeto de tipo Persona
+
+var juan = new Persona()
+
+// - Si agregamos una propiedad al constructor de tipo Persona desde un "prototype" tambien podra verse reflejado en el objeto juan
+
+Persona.prototype.direccion = "Titirilquen"
+
+// - Puedo acceder a las propiedades del objeto Juan usando un ciclo For In
+
+for ( prop in juan ) {
+
+  //- Metodo para mostrar solo las propiedades del objeto que fueron creadas en el constructor, si se quieren visualizar solo las que fueron creadas con prototipos sacar el "!" del if
+  if ( !juan.hasOwnProperty( prop ) )
+    continue
+
+  console.log( prop,":", juan[prop] )
+
+}
