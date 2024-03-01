@@ -2021,22 +2021,79 @@
 
 // - En Javascript podemos "Rotular" los ciclos , para obtener una referencia la cual podemos referenciar mediante un "break" o "continue" desde otro ciclo
 
-for_principal: for (let i = 0; i <= 5; i++) {
+// for_principal: for (let i = 0; i <= 5; i++) {
 
-  console.log( "i", i )
+//   console.log( "i", i )
 
-  for_secundario: for (let j = 0; j <= 5; j++) {
+//   for_secundario: for (let j = 0; j <= 5; j++) {
 
-    console.log( "j", j )
+//     console.log( "j", j )
 
-    for (let x = 0; x <= 5; x++) {
+//     for (let x = 0; x <= 5; x++) {
 
-      console.log( "x", x )
+//       console.log( "x", x )
 
-      break for_principal
+//       break for_principal
 
-    }
+//     }
+
+//   }
+
+// }
+
+/*-- ----------------------------------------------------- --*/
+/*--                setTimeout y setInterval               --*/
+/*-- ----------------------------------------------------- --*/
+
+// - setTimeout: establece un temporizador que ejecuta una función o una pieza de código específica una vez que expira el temporizador
+
+// setTimeout( function() {
+
+//   console.log( "Paso un segundo" )
+
+// }, 1000 );
+
+// - setInterval: llama a una función o ejecuta un fragmento de código de forma reiterada, con un retardo de tiempo fijo entre cada llamada. Este método devuelve un ID de intervalo que lo identifica de forma única, de ese modo, el intervalo puede ser eliminado más tarde llamando a clearInterval()
+
+// var segundos = 0
+
+// var intervalo = setInterval( function() {
+
+//   segundos++
+
+//   console.log( "Seg:", segundos )
+
+//   if ( segundos === 3 ) {
+
+//     clearInterval( intervalo )
+
+//     console.log( "Termino el intervalo" )
+
+//   }
+
+// },  1000);
+
+// - Cuando utilizamos setTimeout dentro de un metodo de un objeto debemos tener cuidado con hacer referencia a "this", "this" adentro del setTimeout apunta al objeto global, si queremos que apunte al objeto del metodo debemos pasar el valor de "this" por variable:
+
+var titere = {
+  nombre: "Policarpo",
+  edad: 50,
+  imprimir: function(){
+
+    // Asiganamos el valor de "this" del objeto "titere" a una variable para poder usarlo en el setTimeout
+    var self = this
+
+    setTimeout(function(){
+
+      console.log( "Acá 'this' apunta a:'", this )
+      console.log( "Pero la variable 'self' apunta a:'", self )
+      console.log( "Por lo tanto con 'self' podemos especificar que:", self.nombre, self.edad )
+
+    }, 1000)
+
 
   }
-
 }
+
+titere.imprimir()
+
