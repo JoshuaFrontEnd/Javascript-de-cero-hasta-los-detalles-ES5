@@ -1876,22 +1876,48 @@
 /*--            Switch... condicional multiple             --*/
 /*-- ----------------------------------------------------- --*/
 
-var mes = 40
+// var mes = 40
 
-switch ( mes ) {
+// switch ( mes ) {
 
-  case ( 10 > 5 ) ? 40 : 1 :
-    console.log( "Enero")
-    break
-  case undefined :
-    console.log( "Febrero")
-    break
-  case 3 :
-    console.log( "Marzo")
-    break
+//   case ( 10 > 5 ) ? 40 : 1 :
+//     console.log( "Enero")
+//     break
+//   case undefined :
+//     console.log( "Febrero")
+//     break
+//   case 3 :
+//     console.log( "Marzo")
+//     break
 
-  default:
-    console.log( "Cualquier otro mes" )
+//   default:
+//     console.log( "Cualquier otro mes" )
 
+// }
+
+/*-- ----------------------------------------------------- --*/
+/*--                          JSON                         --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En javascript podemos convertir objetos a formato JSON y viceversa
+
+var objetoJS = {
+  nombre: "Tulio",
+  edad: "30",
+  imprimir: function(){
+    console.log( this.nombre, this.edad )
+  }
 }
 
+console.log( "Objeto literal", objetoJS )
+
+// - Podemos convertir un objeto a JSON usando el metodo JSON.stringify, cuando se hace esta conversion, se ignoran los metodos del objeto, para conservar los metodos, es mejor asignarlos a un prototipo
+
+var jsonString = JSON.stringify( objetoJS )
+
+console.log( "Objeto literal convertido a JSON:", jsonString )
+
+// - Podemos convertir un JSON a objeto con el metodo JSON.parse
+var objetoDesdeJson = JSON.parse( jsonString )
+
+console.log( "JSON convertido a objeto literal:", objetoDesdeJson )
