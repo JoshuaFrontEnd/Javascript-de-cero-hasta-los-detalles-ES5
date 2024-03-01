@@ -1855,8 +1855,8 @@
 
 // - Obtener el numero mayor entre 10 y 20:
 
-var a = 10
-var b = 20
+// var a = 10
+// var b = 20
 
 // - Con "If...Else" normal:
 
@@ -1868,6 +1868,30 @@ var b = 20
 
 // - Con "Operador condicional ternario"
 
-var c = ( a > b ) ? a : b
+// var c = ( a > b ) ? a : b
 
-console.log( c )
+// console.log( c )
+
+/*-- ----------------------------------------------------- --*/
+/*--            Switch... condicional multiple             --*/
+/*-- ----------------------------------------------------- --*/
+
+var mes = 40
+
+switch ( mes ) {
+
+  case ( 10 > 5 ) ? 40 : 1 :
+    console.log( "Enero")
+    break
+  case undefined :
+    console.log( "Febrero")
+    break
+  case 3 :
+    console.log( "Marzo")
+    break
+
+  default:
+    console.log( "Cualquier otro mes" )
+
+}
+
