@@ -1762,48 +1762,112 @@
 
 // -Bind: El método bind() crea una nueva función, que cuando es llamada, asigna a su operador "this" el valor entregado, con una secuencia de argumentos dados precediendo a cualquiera entregados cuando la función es llamada. El valor de "this" es ignorado cuando la función es llamada con el operador "new"
 
-var carro = {
-  color: "Blanco",
-  marca: "Mazda",
-  imprimir: function(){
-    var salida = this.marca + " - " + this.color
-    return salida
-  }
-}
+// var carro = {
+//   color: "Blanco",
+//   marca: "Mazda",
+//   imprimir: function(){
+//     var salida = this.marca + " - " + this.color
+//     return salida
+//   }
+// }
 
-var carro2 = {
-  color: "Rojo",
-  marca: "Toyota"
-}
+// var carro2 = {
+//   color: "Rojo",
+//   marca: "Toyota"
+// }
 
-var logCarro = function( arg1, arg2 ){
+// var logCarro = function( arg1, arg2 ){
 
-  // Acá el "this" apunta al objeto global "window"
-  console.log( "Carro: ", this.imprimir() )
-  console.log( "Argumentos:", arg1, arg2 )
-  console.log( "========================")
+//   // Acá el "this" apunta al objeto global "window"
+//   console.log( "Carro: ", this.imprimir() )
+//   console.log( "Argumentos:", arg1, arg2 )
+//   console.log( "========================")
 
-}
+// }
 
 // Esto acá dara error por el apuntado del "this" a windows
 // logCarro()
 
 // Pero acá con "bind" estamos apuntando el "this" de "logCarro" al objeto "carro", se debe asignar a una variable, porque bind() genera un contexto de ejecución nuevo
-var logModeloCarro = logCarro.bind( carro )
+// var logModeloCarro = logCarro.bind( carro )
 
 // Pero acá no dara error por el apuntado del "this" a "carro"
-logModeloCarro( "abc", "xyz" )
+// logModeloCarro( "abc", "xyz" )
 
 // - Call: El método call() llama a una función con un valor dado "this" y con argumentos provistos individualmente
 
 // - Estructura: mifuncion( nuevoThis, argumentos... )
 
-logModeloCarro.call( carro, "123", "456" )
+// logModeloCarro.call( carro, "123", "456" )
 
 // - Apply: El método apply() invoca una determinada función asignando explícitamente el objeto "this" y un array como parámetros (argumentos) para dicha función, es casi igual a call(), pero a diferencia de este, los parametros deben ser enviados dentro de un array, esto es util cuando no sabemos la cantidad de parametros que debemos enviarle a la funcion
 
-logModeloCarro.apply( carro, ["asd", "qwe"] )
+// logModeloCarro.apply( carro, ["asd", "qwe"] )
 
 // - Todo esto sirve para utilizar "Funciones Prestadas", basicamente utilizar metodos definidos en otros objetos, con distintas referencias del "this"
 
-console.log( carro.imprimir.call( carro2 ) )
+// console.log( carro.imprimir.call( carro2 ) )
+
+/*-- ----------------------------------------------------- --*/
+/*--                 Sentencia If...Else                   --*/
+/*-- ----------------------------------------------------- --*/
+
+// - La sentencia "If...Else" ejecuta una sentencia si una condición específicada es evaluada como verdadera. Si la condición es evaluada como falsa, otra sentencia puede ser ejecutada
+
+// - Este codigo no es recomendable de usar, pero sirve para explicar, como trabaja la sentencia "If...Else", de manera indiviual, concatenada, con niveles, etc
+
+// var nota = 55
+
+// if ( nota >= 90 ) {
+
+//   console.log( "A" )
+
+// } else if ( nota >= 80 ) {
+
+//   console.log( "B" )
+
+// } else if ( nota >= 70 ) {
+
+//   console.log( "C" )
+
+// } else if ( nota >= 60 ) {
+
+//   console.log( "D" )
+
+// } else {
+
+//   if ( nota < 50 ) {
+
+//     console.log( "-F" )
+
+//   } else {
+
+//     console.log( "+F" )
+
+//   }
+
+
+// }
+
+// console.log( "Termino el codigo." )
+
+// - Tambien existen maneras abreviadas de utilizar la sentencia "If...Else":
+
+// - Obtener el numero mayor entre 10 y 20:
+
+var a = 10
+var b = 20
+
+// - Con "If...Else" normal:
+
+// if ( a > b ) {
+//   c = a
+// } else {
+//   c = b
+// }
+
+// - Con "Operador condicional ternario"
+
+var c = ( a > b ) ? a : b
+
+console.log( c )
