@@ -1689,21 +1689,21 @@
 
 // - Funcion que crea cookies:
 
-function crearCookie( nombre, valor ){
+// function crearCookie( nombre, valor ){
 
-  // "Escape" es una funcion en Javascript que convierte los caracteres especiales a una secuencia hexadecimal legible, esto lo hace para evitar problemas con los caracteres especiales, esta deprecada
-  valor = escape( valor )
+//   // "Escape" es una funcion en Javascript que convierte los caracteres especiales a una secuencia hexadecimal legible, esto lo hace para evitar problemas con los caracteres especiales, esta deprecada
+//   valor = escape( valor )
 
-  // Seteando una fecha de expiracion
-  var hoy = new Date()
+//   // Seteando una fecha de expiracion
+//   var hoy = new Date()
 
-  // A partir de hoy que dure 30 dias
-  hoy.setMonth( hoy.getMonth() + 1 )
+//   // A partir de hoy que dure 30 dias
+//   hoy.setMonth( hoy.getMonth() + 1 )
 
-  // Con el parametro "expires" seteamos la fecha de expiracion
-  document.cookie = nombre+"="+valor+";expires=" + hoy.toUTCString()+";"
+//   // Con el parametro "expires" seteamos la fecha de expiracion
+//   document.cookie = nombre+"="+valor+";expires=" + hoy.toUTCString()+";"
 
-}
+// }
 
 // crearCookie( "nombre", "Policarpo" )
 // crearCookie( "correo", "policarpo@correo.com" )
@@ -1729,27 +1729,81 @@ function crearCookie( nombre, valor ){
 
 // - Funcion para obtener cookies especificas
 
-function getCookie( nombre ){
+// function getCookie( nombre ){
 
-  var cookies = document.cookie
+//   var cookies = document.cookie
 
-  // Separar la cadena de caracteres con las cookies por espacio y generar un arreglo:
-  var cookieArr = cookies.split("; ")
+//   // Separar la cadena de caracteres con las cookies por espacio y generar un arreglo:
+//   var cookieArr = cookies.split("; ")
 
-  for( var i=0; i<cookieArr.length; i++ ){
+//   for( var i=0; i<cookieArr.length; i++ ){
 
-    var parArr = cookieArr[i].split("=")
-    cookieArr[i] = parArr
+//     var parArr = cookieArr[i].split("=")
+//     cookieArr[i] = parArr
 
-    if( parArr[0] === nombre ){
-      return unescape( parArr[1] )
-    }
+//     if( parArr[0] === nombre ){
+//       return unescape( parArr[1] )
+//     }
 
+//   }
+
+//   // Este "return" es en caso de que no exista la cookie consultada
+//   return undefined
+
+// }
+
+// console.log( getCookie( "direccion" ) )
+
+/*-- ----------------------------------------------------- --*/
+/*--             Funciones Call, Apply y Bind              --*/
+/*-- ----------------------------------------------------- --*/
+
+// - En Javascript cada funcion tiene 3 metodos que se encuentran en su prototipo Call, Apply y Bind
+
+// -Bind: El método bind() crea una nueva función, que cuando es llamada, asigna a su operador "this" el valor entregado, con una secuencia de argumentos dados precediendo a cualquiera entregados cuando la función es llamada. El valor de "this" es ignorado cuando la función es llamada con el operador "new"
+
+var carro = {
+  color: "Blanco",
+  marca: "Mazda",
+  imprimir: function(){
+    var salida = this.marca + " - " + this.color
+    return salida
   }
+}
 
-  // Este "return" es en caso de que no exista la cookie consultada
-  return undefined
+var carro2 = {
+  color: "Rojo",
+  marca: "Toyota"
+}
+
+var logCarro = function( arg1, arg2 ){
+
+  // Acá el "this" apunta al objeto global "window"
+  console.log( "Carro: ", this.imprimir() )
+  console.log( "Argumentos:", arg1, arg2 )
+  console.log( "========================")
 
 }
 
-console.log( getCookie( "direccion" ) )
+// Esto acá dara error por el apuntado del "this" a windows
+// logCarro()
+
+// Pero acá con "bind" estamos apuntando el "this" de "logCarro" al objeto "carro", se debe asignar a una variable, porque bind() genera un contexto de ejecución nuevo
+var logModeloCarro = logCarro.bind( carro )
+
+// Pero acá no dara error por el apuntado del "this" a "carro"
+logModeloCarro( "abc", "xyz" )
+
+// - Call: El método call() llama a una función con un valor dado "this" y con argumentos provistos individualmente
+
+// - Estructura: mifuncion( nuevoThis, argumentos... )
+
+logModeloCarro.call( carro, "123", "456" )
+
+// - Apply: El método apply() invoca una determinada función asignando explícitamente el objeto "this" y un array como parámetros (argumentos) para dicha función, es casi igual a call(), pero a diferencia de este, los parametros deben ser enviados dentro de un array, esto es util cuando no sabemos la cantidad de parametros que debemos enviarle a la funcion
+
+logModeloCarro.apply( carro, ["asd", "qwe"] )
+
+// - Todo esto sirve para utilizar "Funciones Prestadas", basicamente utilizar metodos definidos en otros objetos, con distintas referencias del "this"
+
+console.log( carro.imprimir.call( carro2 ) )
