@@ -2119,22 +2119,34 @@
 
 // document.body.appendChild( input )
 
-function evento( e ) {
-  console.log( "soy el evento click" )
+// function evento( e ) {
+//   console.log( "soy el evento click" )
 
-  // - Todos los eventos tienen un objeto, aca uso un console.log para visualizarlo
-  console.log( e )
-}
+//   // - Todos los eventos tienen un objeto, aca uso un console.log para visualizarlo
+//   console.log( e )
+// }
 
 // - El codigo de arriba corresponde a crear este elemento en HTML:
 // <input type="button" value="Evento click" onclick="evento()" >
 
 // - Tambien podemos asignar eventos haciendo referencia a un elemento HTML
 
-var botonClick = document.getElementById("botonClick")
+// var botonClick = document.getElementById("botonClick")
 
-botonClick.addEventListener("click", evento )
+// botonClick.addEventListener("click", evento )
 
 // - Para simular la llamada de un evento podemos lanzarlo mediante la notacion de punto al elemento que lo dispara
 
 // botonClick.click()
+
+/*-- ----------------------------------------------------- --*/
+/*--            Capturar la seleccion de texto             --*/
+/*-- ----------------------------------------------------- --*/
+
+document.onmouseup = function( event ){
+
+  var texto = window.getSelection().toString()
+
+  console.log( texto )
+
+}
