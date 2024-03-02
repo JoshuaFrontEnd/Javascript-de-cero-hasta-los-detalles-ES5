@@ -2143,10 +2143,40 @@
 /*--            Capturar la seleccion de texto             --*/
 /*-- ----------------------------------------------------- --*/
 
-document.onmouseup = function( event ){
+// document.onmouseup = function( event ){
 
-  var texto = window.getSelection().toString()
+//   var texto = window.getSelection().toString()
 
-  console.log( texto )
+//   console.log( texto )
+
+// }
+
+/*-- ----------------------------------------------------- --*/
+/*--            Evento Onsubmit y parametros URL           --*/
+/*-- ----------------------------------------------------- --*/
+
+function validar() {
+
+  var nombre = document.getElementById( "txtNombre" ).value
+  var apellido = document.getElementById( "txtApellido" ).value
+
+  if ( nombre.length < 1 ) {
+    return false
+  }
+
+  if ( apellido.length < 1 ) {
+    return false
+  }
+
+  return true
 
 }
+
+function getParamURL(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+console.log( window.location.search )
+console.log( window.location.search.split("&") )
+
+console.log( getParamURL( "txtNombre" ))
