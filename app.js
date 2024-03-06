@@ -1011,7 +1011,7 @@
 
 // arr[2]()
 
-// - Para invocar la funcion de la posicion 3, utilizando los datos de la posicion 1 como parametros
+// - Para invocar la funcion de la posicion 3, utilizando los datos de la posicion 1 como argumento
 
 // arr[3]( arr[1] )
 
@@ -1041,7 +1041,7 @@
 /*--                    Argumentos                         --*/
 /*-- ----------------------------------------------------- --*/
 
-// - En Javascript las funciones tambien poseen sus propios prototipos, uno de ellos es el "arguments", los argumentos es un objeto que contiene los parametros que se le envian a una funcion cuando esta es invocada, de esta manera la funcion puede utilizar esos datos
+// - En Javascript las funciones tambien poseen sus propios prototipos, uno de ellos es el "arguments", este objeto contiene los argumentos que se le envian a una funcion cuando esta es invocada, de esta manera la funcion puede utilizar esos datos
 
 // - Defino una funcion que mostrara por consola los argumentos, en este caso el parametro "a" recibira el primer argumento que sea enviado cuando se invoque la funcion
 // function miFuncion( a ) {
@@ -1070,7 +1070,7 @@
 
 // - En Javascript no existe la sobrecarga de operadores, pero se pueden usar distintas estrategias para emular este comportamiento, mas no igualarlo:
 
-// - Si tenemos una funcion donde necesitamos dos argumentos, pero existe la posibilidad de que esos parametros no sean enviados, podemos asignarles valor por defecto:
+// - Si tenemos una funcion donde necesitamos dos parametros, pero existe la posibilidad de que esos argumentos no sean enviados, podemos asignarles valor por defecto:
 
 // - Si no viene el nombre se asigna el valor de "sin nombre" a la variable "nombre"
 // - Si no viene el precio se asigna el valor de 0 a la variable "precio"
@@ -1800,7 +1800,7 @@
 
 // logModeloCarro.call( carro, "123", "456" )
 
-// - Apply: El método apply() invoca una determinada función asignando explícitamente el objeto "this" y un array como parámetros (argumentos) para dicha función, es casi igual a call(), pero a diferencia de este, los parametros deben ser enviados dentro de un array, esto es util cuando no sabemos la cantidad de parametros que debemos enviarle a la funcion
+// - Apply: El método apply() invoca una determinada función asignando explícitamente el objeto "this" y un array como parámetros (argumentos) para dicha función, es casi igual a call(), pero a diferencia de este, los argumentos deben ser enviados dentro de un array, esto es util cuando no sabemos la cantidad de argumentos que debemos enviarle a la funcion
 
 // logModeloCarro.apply( carro, ["asd", "qwe"] )
 
